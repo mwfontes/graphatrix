@@ -2,14 +2,20 @@
 // ** OBJETOS **
 // *************
 
-// COORDENADAS INSERIDAS NO ARRAY GERAL _allData.points que serão a base para todos os cálculos e geração de objetos na tela
+// COORDENADAS INSERIDAS NO ARRAY GERAL _allData.points
+// que serão a base para todos os cálculos e geração de objetos na tela
 function coordenadaXY(x, y) {
+	
 	this.x = x;
 	this.y = y;
-	this.topPosition = _allData.points.length * _coordContainerHeight; // Posição atual na vertical, em pixels, para comparação no reordenamento via drag n' drop
+	
+	// Posição atual na vertical, em pixels,
+	// para comparação no reordenamento via drag n' drop
+	this.topPosition = _allData.points.length * _coordContainerHeight;
 }
 
-// OBJETO VISUAL (INSERIDO NA TELA) QUE UTILIZA AS COORDENADAS ACIMA (coordenadasXY)
+// OBJETO VISUAL (INSERIDO NA TELA) QUE UTILIZA
+// AS COORDENADAS ACIMA (coordenadasXY)
 function coordenadaContainer(x, y, index, isModified) {
 
 	// converte valor bruto para float com no máximo 2 decimais
@@ -24,7 +30,7 @@ function coordenadaContainer(x, y, index, isModified) {
 		txtArea = document.createElement("div");
 	
 	container.addEventListener("mouseover", function() { highlight(index); });
-	container.addEventListener("mouseout", function() { noHighlight(index); });
+	container.addEventListener("mouseout",  function() { noHighlight(index); });
 
 	txtArea.className = "coords-txt-area";
 	txtArea.addEventListener("mousedown", beginCoordsDrag);
