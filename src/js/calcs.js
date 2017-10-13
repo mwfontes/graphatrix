@@ -7,7 +7,7 @@ function init() {
 
 	_c = _canvas.getContext('2d');
 
-	flushScreen();
+	// flushScreen();
 
 	// window.onresize = flushScreen;
 

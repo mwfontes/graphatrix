@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         watch: {
             everything: {
                 files: ['src/**/*'],
-                tasks: ['concat', 'uglify', 'sass', 'htmlmin']
+                tasks: ['copy', 'concat', 'uglify', 'sass', 'htmlmin']
             }
         },
         sass: {

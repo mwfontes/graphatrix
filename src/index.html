@@ -6,8 +6,9 @@
 	<title>Graphatrix v0.6.17.01</title>
 
 	<link rel="icon" type="image/png" href="images/iconX.png" />
+	<link href="https://fonts.googleapis.com/css?family=Yantramanav:100,400" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	<script type="text/javascript" src="js/main.min.js"></script>
+	<!-- <script type="text/javascript" src="js/main.min.js"></script> -->
 </head>
 
 <body>
@@ -16,34 +17,29 @@
 
 		<canvas id="canvas" class="unselectable" draggable="no"></canvas>
 
-		<div id="shadow-corner"></div>
-		<div id="shadow-left"></div>
-		<div id="shadow-top"></div>
-
 		<div id="insert-container">
-			<div>
-				<table>
+			<div id="logo"></div>
+			<div class="divider"></div>
+			<div class="inner-container">
+				<h3>Input points</h3>
+				<div class="inline">
+					<div>
+						<label for="input-x">X</label>
+						<input type="text" id="input-x" onkeydown="checkInputEnter(this)" />
+					</div>
+					<div>
+						<label for="input-y">Y</label>
+						<input type="text" id="input-y" onkeydown="checkInputEnter(this)" />
+					</div>
+				</div>
+				<div class="inline">
+					<button onclick="addPoint()">Insert point</button>
+				</div>
+			</div>
+				<div>
+				<!-- <table>
 					<tr>
 						<td align="center">
-							<img src="images/logo.png" width="140" height="76" />
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<img src="images/divisor_vertical.png" width="150" height="2" />
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							X
-							<input type="text" class="input-text" id="point-x" onkeydown="checkInputEnter(this)" style="margin-right: 20px;"
-							/> Y
-							<input type="text" class="input-text" id="point-y" onkeydown="checkInputEnter(this)" />
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<input type="button" class="input-button" onclick="addPoint()" value="Add point" style="width: 160px;" />
 						</td>
 					</tr>
 					<tr>
@@ -104,16 +100,7 @@
 						<td id="modified-container">
 						</td>
 					</tr>
-					<!--<tr>
-					<td>
-						Controle:
-					</td>
-				</tr>
-				<tr>
-					<td id="controle-container">
-					</td>
-				</tr>-->
-				</table>
+				</table> -->
 			</div>
 		</div>
 
