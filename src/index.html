@@ -1,106 +1,110 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Graphatrix v0.6.13</title>
 
-<link rel="icon" type="image/png" href="images/iconX.png" />
-<link rel="stylesheet" type="text/css" href="grapher.css" />
-<script type="text/javascript" src="globals.js"></script>
-<script type="text/javascript" src="objects.js"></script>
-<script type="text/javascript" src="matrixes.js"></script>
-<script type="text/javascript" src="rearrange.js"></script>
-<script type="text/javascript" src="calcs.js"></script>
+<head>
+	<meta charset="utf-8">
+	<title>Graphatrix v0.6.17.01</title>
+
+	<link rel="icon" type="image/png" href="images/iconX.png" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script type="text/javascript" src="js/main.min.js"></script>
 </head>
 
 <body>
-	<canvas id="canvas" class="unselectable"></canvas>
-	
-	<div id="shadow-corner"></div>
-	<div id="shadow-left"></div>
-	<div id="shadow-top"></div>
 
-	<div id="insert-container">
-		<div>
-			<table>
-				<tr>
-					<td align="center">
-						<img src="images/logo.png" width="140" height="76" />
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<img src="images/divisor_vertical.png" width="150" height="2" />
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						X <input type="text" class="input-text" id="point-x" onkeydown="checkInputEnter(this)" style="margin-right: 20px;" />
-						Y <input type="text" class="input-text" id="point-y" onkeydown="checkInputEnter(this)" />
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<input type="button" class="input-button" onclick="addPoint()" value="Add point" style="width: 160px;" />
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<img src="images/divisor_vertical.png" width="150" height="2" />
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-					Pivot:
-						<select id="pivot-select" onchange="changePivot()">
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td id="pivot-coords" align="center">
-						Origin:
-					</td>
-				</tr>		
-				<tr>
-					<td align="center">
-						<img src="images/divisor_vertical.png" width="150" height="2" />
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div>
-			<table width="100%">
-				<tr>
-					<td align="center">
-						<label for="open-close-path">Close path</label><input type="checkbox" id="open-close-path" checked="checked" onclick="desenha()" />&nbsp;&nbsp;
-						<label for="show-grid">Show grid</label><input type="checkbox" id="show-grid" checked="checked"   onclick="desenha()" />
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<img src="images/divisor_vertical.png" width="150" height="2" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Created points:
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div id="points-container"></div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Modified points:
-					</td>
-				</tr>
-				<tr>
-					<td id="modified-container">
-					</td>
-				</tr>
-				<!--<tr>
+	<article id="wrapper">
+
+		<canvas id="canvas" class="unselectable" draggable="no"></canvas>
+
+		<div id="shadow-corner"></div>
+		<div id="shadow-left"></div>
+		<div id="shadow-top"></div>
+
+		<div id="insert-container">
+			<div>
+				<table>
+					<tr>
+						<td align="center">
+							<img src="images/logo.png" width="140" height="76" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="images/divisor_vertical.png" width="150" height="2" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							X
+							<input type="text" class="input-text" id="point-x" onkeydown="checkInputEnter(this)" style="margin-right: 20px;"
+							/> Y
+							<input type="text" class="input-text" id="point-y" onkeydown="checkInputEnter(this)" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<input type="button" class="input-button" onclick="addPoint()" value="Add point" style="width: 160px;" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="images/divisor_vertical.png" width="150" height="2" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							Pivot:
+							<select id="pivot-select" onchange="changePivot()">
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td id="pivot-coords" align="center">
+							Origin:
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="images/divisor_vertical.png" width="150" height="2" />
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<label for="open-close-path">Close path</label>
+							<input type="checkbox" id="open-close-path" checked="checked" onclick="desenha()" />&nbsp;&nbsp;
+							<label for="show-grid">Show grid</label>
+							<input type="checkbox" id="show-grid" checked="checked" onclick="desenha()" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="images/divisor_vertical.png" width="150" height="2" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Created points:
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div id="points-container"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Modified points:
+						</td>
+					</tr>
+					<tr>
+						<td id="modified-container">
+						</td>
+					</tr>
+					<!--<tr>
 					<td>
 						Controle:
 					</td>
@@ -109,20 +113,28 @@
 					<td id="controle-container">
 					</td>
 				</tr>-->
-			</table>
+				</table>
+			</div>
 		</div>
-	</div>
 
-	<div id="matrixes-container">
-		<div id="matrixes-buttons-container">
-			<input type="button" class="input-button" onclick="addTranslationMatrix()" value="Add TRANSLATION matrix"/><br />
-			<input type="button" class="input-button" onclick="addRotationMatrix()" value="Add ROTATION matrix"/><br />
-			<input type="button" class="input-button" onclick="addReflectionMatrix()" value="Add REFLECTION matrix"/><br />
-			<input type="button" class="input-button" onclick="addResizeMatrix()" value="Add RESIZING matrix"/>
-			<input type="button" class="input-button" onclick="addShearMatrix()" value="Add SHEARING matrix"/>
+		<div id="matrixes-container">
+			<div id="matrixes-buttons-container">
+				<input type="button" class="input-button" onclick="addTranslationMatrix()" value="Add TRANSLATION matrix" />
+				<br />
+				<input type="button" class="input-button" onclick="addRotationMatrix()" value="Add ROTATION matrix" />
+				<br />
+				<input type="button" class="input-button" onclick="addReflectionMatrix()" value="Add REFLECTION matrix" />
+				<br />
+				<input type="button" class="input-button" onclick="addResizeMatrix()" value="Add RESIZING matrix" />
+				<input type="button" class="input-button" onclick="addShearMatrix()" value="Add SHEARING matrix" />
+			</div>
+			<div id="matrixes-cell"></div>
+			<div id="matrixes-calculations-panel"></div>
+			<img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()"
+			/>
 		</div>
-		<div id="matrixes-cell"></div>
-		<div id="matrixes-calculations-panel"></div><img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()" />
-	</div>
+
+	</article>
 </body>
+
 </html>

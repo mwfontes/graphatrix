@@ -9,7 +9,7 @@ function init() {
 
 	flushScreen();
 
-	window.onresize = flushScreen;
+	// window.onresize = flushScreen;
 
 	fakeStart();
 
@@ -77,25 +77,25 @@ function startDrag(evt) {
 }
 
 function flushScreen() {
-	_width = window.innerWidth;
-	_height = window.innerHeight;
+	// _width = window.innerWidth;
+	// _height = window.innerHeight;
 
-	var matrixesContainer = document.getElementById("matrixes-container"),
-		inputContainer = document.getElementById("insert-container");
+	// var matrixesContainer = document.getElementById("matrixes-container"),
+	// 	inputContainer = document.getElementById("insert-container");
 
-	inputContainer.style.height = (_height - 20) + "px";
-	matrixesContainer.style.width = (_width - inputContainer.offsetWidth) + "px";
-	_canvas.width = (_width - inputContainer.offsetWidth);
-	_canvas.height = (_height - (matrixesContainer.offsetHeight));
+	// inputContainer.style.height = (_height - 20) + "px";
+	// matrixesContainer.style.width = (_width - inputContainer.offsetWidth) + "px";
+	// _canvas.width = (_width - inputContainer.offsetWidth);
+	// _canvas.height = (_height - (matrixesContainer.offsetHeight));
 
-	_centerX = _canvas.width / 2;
-	_centerY = _canvas.height / 2;
+	// _centerX = _canvas.width / 2;
+	// _centerY = _canvas.height / 2;
 
-	document.getElementById("shadow-left").style.height = (_height - 94) + "px";
-	document.getElementById("shadow-top").style.width = (_width - 194) + "px";
+	// document.getElementById("shadow-left").style.height = (_height - 94) + "px";
+	// document.getElementById("shadow-top").style.width = (_width - 194) + "px";
 	
-	document.getElementById("matrixes-cell").style.width = (matrixesContainer.offsetWidth - 172) + "px";
-	document.getElementById("matrixes-calculations-panel").style.width = (matrixesContainer.offsetWidth - 172) + "px";
+	// document.getElementById("matrixes-cell").style.width = (matrixesContainer.offsetWidth - 172) + "px";
+	// document.getElementById("matrixes-calculations-panel").style.width = (matrixesContainer.offsetWidth - 172) + "px";
 
 	desenha();
 }
@@ -779,7 +779,6 @@ function recomposeSysData() {
 		var matrixT = new CalculatedMatrix(_allData.matrixes[c]);
 		matrixT.style.left = (c * 125) + "px";
 		container.appendChild(matrixT);
-		console.log("Primeira linha");
 	}
 	
 	// COLOCA AS DEMAIS LINHAS, CALCULADAS, ATÉ CHEGAR AO FINAL
