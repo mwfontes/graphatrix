@@ -6,7 +6,7 @@
 	<title>Graphatrix v0.6.17.01</title>
 
 	<link rel="icon" type="image/png" href="images/iconX.png" />
-	<link href="https://fonts.googleapis.com/css?family=Yantramanav:100,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<!-- <script type="text/javascript" src="js/main.min.js"></script> -->
 </head>
@@ -18,8 +18,9 @@
 		<canvas id="canvas" class="unselectable" draggable="no"></canvas>
 
 		<div id="insert-container">
+
 			<div id="logo"></div>
-			<div class="divider"></div>
+
 			<div class="inner-container">
 				<h3>Input points</h3>
 				<div class="inline">
@@ -36,24 +37,30 @@
 					<button onclick="addPoint()">Insert point</button>
 				</div>
 			</div>
-				<div>
-				<!-- <table>
-					<tr>
-						<td align="center">
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<img src="images/divisor_vertical.png" width="150" height="2" />
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							Pivot:
-							<select id="pivot-select" onchange="changePivot()">
-							</select>
-						</td>
-					</tr>
+
+			<div class="inner-container">
+				<h3>Polygon pivot</h3>
+				<div class="inline">
+					<select id="pivot-select" onchange="changePivot()"></select>
+				</div>
+			</div>
+
+			<div class="inner-container">
+				<h3>Origin Coordinates</h3>
+				<div class="inline">
+					<div>
+						<label for="origin-x">X</label>
+						<input type="text" id="origin-x" readonly />
+					</div>
+					<div>
+						<label for="origin-y">Y</label>
+						<input type="text" id="origin-y" readonly />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <table>
 					<tr>
 						<td id="pivot-coords" align="center">
 							Origin:
@@ -101,8 +108,6 @@
 						</td>
 					</tr>
 				</table> -->
-			</div>
-		</div>
 
 		<div id="matrixes-container">
 			<div id="matrixes-buttons-container">
