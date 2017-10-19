@@ -6,7 +6,7 @@
 	<title>Graphatrix v0.6.17.01</title>
 
 	<link rel="icon" type="image/png" href="images/iconX.png" />
-	<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600|Yantramanav:300" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<!-- <script type="text/javascript" src="js/main.min.js"></script> -->
 </head>
@@ -46,7 +46,7 @@
 			</div>
 
 			<div class="inner-container">
-				<h3>Origin Coordinates</h3>
+				<h3>Origin coordinates</h3>
 				<div class="inline">
 					<div>
 						<label for="origin-x">X</label>
@@ -58,36 +58,41 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="inner-container">
+				<h3>Options</h3>
+				<div class="inline">
+					<div class="force-center">
+						<div class="checkbox-true-label">Close path</div>
+						<input type="checkbox" id="open-close-path" checked="checked" onclick="desenha()" />
+						<label for="open-close-path" class="checkbox"></label>
+					</div>
+					<div class="force-center">
+						<div class="checkbox-true-label">Show grid</div>
+						<input type="checkbox" id="show-grid" checked="checked" onclick="desenha()" />
+						<label for="show-grid" class="checkbox"></label>
+					</div>
+				</div>
+			</div>
+
+			<div class="inner-container">
+				<h3>Created points</h3>
+				<div class="inline">
+					<div>
+						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
+						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
+						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
+					</div>
+				</div>
+			</div>
+
+
+
 		</div>
 
-		<!-- <table>
-					<tr>
-						<td id="pivot-coords" align="center">
-							Origin:
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<img src="images/divisor_vertical.png" width="150" height="2" />
-						</td>
-					</tr>
-				</table>
-			</div>
+<!--
 			<div>
 				<table width="100%">
-					<tr>
-						<td align="center">
-							<label for="open-close-path">Close path</label>
-							<input type="checkbox" id="open-close-path" checked="checked" onclick="desenha()" />&nbsp;&nbsp;
-							<label for="show-grid">Show grid</label>
-							<input type="checkbox" id="show-grid" checked="checked" onclick="desenha()" />
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<img src="images/divisor_vertical.png" width="150" height="2" />
-						</td>
-					</tr>
 					<tr>
 						<td>
 							Created points:
