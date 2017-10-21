@@ -15,14 +15,18 @@
 
 	<article id="wrapper">
 
+		<!-- Where everything get drawn -->
 		<canvas id="canvas" class="unselectable" draggable="no"></canvas>
 
+		<!-- Left-handsided panel -->
 		<div id="insert-container">
 
+			<!-- Graphatrix logo on top -->
 			<div id="logo"></div>
 
+			<!-- INPUT POINTS CONTAINER -->
 			<div class="inner-container">
-				<h3>Input points</h3>
+				<h3>Input vertices</h3>
 				<div class="inline">
 					<div>
 						<label for="input-x">X</label>
@@ -34,10 +38,11 @@
 					</div>
 				</div>
 				<div class="inline">
-					<button onclick="addPoint()">Insert point</button>
+					<button onclick="addPoint()">Insert vertex</button>
 				</div>
 			</div>
 
+			<!-- PIVOT SELECTION CONTAINER -->
 			<div class="inner-container">
 				<h3>Polygon pivot</h3>
 				<div class="inline">
@@ -45,6 +50,7 @@
 				</div>
 			</div>
 
+			<!-- ORIGIN (CENTER) POINT FOR USER REFERENCE -->
 			<div class="inner-container">
 				<h3>Origin coordinates</h3>
 				<div class="inline">
@@ -59,6 +65,7 @@
 				</div>
 			</div>
 
+			<!-- DRAWING OPTIONS -->
 			<div class="inner-container">
 				<h3>Options</h3>
 				<div class="inline">
@@ -75,55 +82,39 @@
 				</div>
 			</div>
 
+			<!-- VERTICES ADDED BY THE USER -->
 			<div class="inner-container">
-				<h3>Created points</h3>
+				<h3>Created vertices</h3>
 				<div class="inline">
 					<div>
-						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
-						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
-						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
+						<div class="points">
+							<span>X: 0.00</span>
+							<span>Y: 0.00</span>
+							<div class="erase-points"></div>
+						</div>
+						<div class="points">
+							<span>X: 0.00</span>
+							<span>Y: 0.00</span>
+							<div class="erase-points"></div>
+						</div>
+						<div class="points">
+							<span>X: 0.00</span>
+							<span>Y: 0.00</span>
+							<div class="erase-points"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 
-
-
 		</div>
-
-<!--
-			<div>
-				<table width="100%">
-					<tr>
-						<td>
-							Created points:
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div id="points-container"></div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Modified points:
-						</td>
-					</tr>
-					<tr>
-						<td id="modified-container">
-						</td>
-					</tr>
-				</table> -->
 
 		<div id="matrixes-container">
 			<div id="matrixes-buttons-container">
-				<input type="button" class="input-button" onclick="addTranslationMatrix()" value="Add TRANSLATION matrix" />
-				<br />
-				<input type="button" class="input-button" onclick="addRotationMatrix()" value="Add ROTATION matrix" />
-				<br />
-				<input type="button" class="input-button" onclick="addReflectionMatrix()" value="Add REFLECTION matrix" />
-				<br />
-				<input type="button" class="input-button" onclick="addResizeMatrix()" value="Add RESIZING matrix" />
-				<input type="button" class="input-button" onclick="addShearMatrix()" value="Add SHEARING matrix" />
+				<button onclick="addTranslationMatrix()" value="Add TRANSLAO</button>N matrix"></button>
+				<button onclick="addRotationMatrix()" value="Add ROTATION matrix"></button>
+				<button onclick="addReflectionMatrix()" value="Add REFLECTN</button> matrix"></button>
+				<button onclick="addResizeMatrix()" value="Add RESIZING matrix"></button>
+				<button onclick="addShearMatrix()" value="Add SHEARING matrix"></button>
 			</div>
 			<div id="matrixes-cell"></div>
 			<div id="matrixes-calculations-panel"></div>
