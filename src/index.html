@@ -6,17 +6,25 @@
 	<title>Graphatrix v0.6.17.01</title>
 
 	<link rel="icon" type="image/png" href="images/iconX.png" />
+	
 	<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600|Yantramanav:300" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	<!-- <script type="text/javascript" src="js/main.min.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="graphatrix.bundle.css" />
+	<script type="text/javascript" src="graphatrix.bundle.js"></script>
 </head>
 
 <body>
 
 	<article id="wrapper">
 
+		<!-- PLOTTING CANVAS -->
 		<canvas id="canvas" class="unselectable" draggable="no"></canvas>
+		<!-- END PLOTTING CANVAS -->
 
+
+
+
+
+		<!-- INPUTS + OPTIONS -->
 		<div id="insert-container">
 
 			<div id="logo"></div>
@@ -86,34 +94,15 @@
 				</div>
 			</div>
 
-
-
 		</div>
+		<!-- END INPUTS + OPTIONS -->
 
-<!--
-			<div>
-				<table width="100%">
-					<tr>
-						<td>
-							Created points:
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div id="points-container"></div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Modified points:
-						</td>
-					</tr>
-					<tr>
-						<td id="modified-container">
-						</td>
-					</tr>
-				</table> -->
 
+
+
+
+
+		<!-- MATRIXES -->
 		<div id="matrixes-container">
 			<div id="matrixes-buttons-container">
 				<input type="button" class="input-button" onclick="addTranslationMatrix()" value="Add TRANSLATION matrix" />
@@ -130,6 +119,7 @@
 			<img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()"
 			/>
 		</div>
+		<!-- END MATRIXES -->
 
 	</article>
 </body>

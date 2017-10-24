@@ -1,6 +1,66 @@
+const path = require('path');
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
 	entry: './src/js/app.js',
 	output: {
-		filename: './build/grapathix.bundle.js'
-	}
+		path: path.resolve(__dirname, 'build'),
+		filename: 'grapathix.bundle.js',
+		publicPath: ""
+	},
+	devtool: 'source-map',
+	module: {
+		rules: [
+			{
+				test: /\.scss$/,
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: ["css-loader", "sass-loader"]
+				})
+			},
+			{
+				test: /\.js$/,
+				use: 'babel-loader'
+			},
+			{
+				test: /\.(png|jpg|svg)$/,
+				use: [
+					{
+						loader: "file-loader",
+						options: {
+							name: "[path][name].[ext]",
+							context: "./src/images",
+							outputPath: "images/"
+						}
+					}
+				]
+			}
+		]
+	},
+	plugins: [
+		new CopyWebpackPlugin([
+			{
+				context: "./src",
+				from: 'index.html',
+				to: './'
+			},
+			{
+				context: "./src/images",
+				from: 'iconX.png',
+				to: './images'
+			}/*,
+			{
+				context: './src/images',
+				from: '*',
+				to: './images'
+			}*/
+		]),
+		new ExtractTextPlugin({
+			filename: "graphatrix.bundle.css",
+			disable: false,
+			allChunks: true
+		})
+	]
 };
