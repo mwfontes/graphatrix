@@ -9,7 +9,7 @@
 	
 	<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600|Yantramanav:300" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="graphatrix.bundle.css" />
-	<script type="text/javascript" src="graphatrix.bundle.js"></script>
+	<!-- <script type="text/javascript" src="graphatrix.bundle.js"></script> -->
 </head>
 
 <body>
@@ -105,14 +105,11 @@
 		<!-- MATRIXES -->
 		<div id="matrixes-container">
 			<div id="matrixes-buttons-container">
-				<input type="button" class="input-button" onclick="addTranslationMatrix()" value="Add TRANSLATION matrix" />
-				<br />
-				<input type="button" class="input-button" onclick="addRotationMatrix()" value="Add ROTATION matrix" />
-				<br />
-				<input type="button" class="input-button" onclick="addReflectionMatrix()" value="Add REFLECTION matrix" />
-				<br />
-				<input type="button" class="input-button" onclick="addResizeMatrix()" value="Add RESIZING matrix" />
-				<input type="button" class="input-button" onclick="addShearMatrix()" value="Add SHEARING matrix" />
+				<button type="button" class="input-button" onclick="addTranslationMatrix()">Translation</button>
+				<button type="button" class="input-button" onclick="addRotationMatrix()">Rotation</button>
+				<button type="button" class="input-button" onclick="addReflectionMatrix()">Reflection</button>
+				<button type="button" class="input-button" onclick="addResizeMatrix()">Resizing</button>
+				<button type="button" class="input-button" onclick="addShearMatrix()">Shearing</button>
 			</div>
 			<div id="matrixes-cell"></div>
 			<div id="matrixes-calculations-panel"></div>
