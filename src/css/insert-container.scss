@@ -1,16 +1,3 @@
-$elements-height: 16px;
-
-.clickable-element {
-	width: 140px;
-	color: #fff;
-	background-color: $color-light;
-	line-height: $elements-height;
-	margin: 0;
-	padding: 2px 0;
-	border: 0;
-	border-radius: 2px;
-}
-
 #insert-container {
 	position: absolute;
 	left: 0;
@@ -20,6 +7,7 @@ $elements-height: 16px;
 	background-color: $color-gray-light;
 	padding: 10px;
 	color: #fff;
+	border-right: 1px solid $color-medium-light;
 
 	.shadow {
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
@@ -73,20 +61,6 @@ $elements-height: 16px;
 		select {
 			@extend .clickable-element;
 			margin-top: 5px;
-			font-size: 0.8rem;
-			cursor: pointer;
-			opacity: 0.9;
-			transition: all 0.25s ease;
-			
-			&:hover {
-				transform: scale(1.1, 1.1);
-				opacity: 1;
-			}
-			
-			&:active {
-				transition: all 0.05s ease;
-				transform: scale(0.9, 0.9);
-			}
 		}
 
 		.checkbox-true-label {
@@ -130,10 +104,11 @@ $elements-height: 16px;
 			@extend .clickable-element;
 			position: relative;
 			font-weight: 700;
+			font-size: 0.7rem;
 			margin: 1px 0;
 			cursor: ns-resize;
-			display: flex;
-			justify-content: space-evenly;
+			// display: flex;
+			// justify-content: space-evenly;
 			transition: all 0.25s ease;
 
 			.erase-points {
@@ -152,7 +127,6 @@ $elements-height: 16px;
 			
 			&:hover {
 				transform: scale(1.1, 1.1);
-				background-color: $color-medium;
 				
 				.erase-points {
 					display: block;
