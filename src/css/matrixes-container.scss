@@ -6,26 +6,53 @@
 	height: auto;
 	background-color: $color-gray-light;
 	padding-bottom: 10px;
+	display: flex;
 
 	#matrixes-buttons-container {
 		margin: 10px 0 0 10px;
 		width: 80px;
 		height: auto;
+		
 		button {
 			@extend .clickable-element;
 			margin: 1px 0;
 			width: 100%;
 		}
 	}
-	#matrixes-cell {
-		position: absolute;
-		height: 78px;
-		left: 166px;
-		top: 8px;
+	
+	#matrixes-elements-holder {
+		width: calc(100% - 110px);
+		margin: 10px 0 0 10px;
+		height: 110px;
 		overflow-x: auto;
 		overflow-y: hidden;
+
+		.matrix-input {
+			width: 120px;
+			height: 60px;
+			color: #fff;
+			text-align: center;
+			margin-right: 10px;
+			background-position: top;
+
+			.value-input-container {
+				
+			}
+		}
+		// .matrixes-box:hover {
+		// 	background-position: bottom;
+		// }
+		// .matrixes-box input {
+		// 	width: 20px;
+		// 	height: 12px;
+		// 	border: solid 1px #ddd;
+		// 	background-color: #777;
+		// 	color: #fff;
+		// }
+	
 	}
-	#matrixes-calculations-panel {
+
+	/*#matrixes-calculations-panel {
 		position: absolute;
 		width: 500px;
 		height: 0;
@@ -33,26 +60,5 @@
 		top: 80px;
 		overflow: auto;
 		background-color: #888;
-	}
-	.matrixes-box {
-		position: absolute;
-		width: 120px;
-		height: 60px;
-		left: 0;
-		top: 0;
-		color: #fff;
-		text-align: center;
-		margin-right: 10px;
-		background-position: top;
-	}
-	.matrixes-box:hover {
-		background-position: bottom;
-	}
-	.matrixes-box input {
-		width: 20px;
-		height: 12px;
-		border: solid 1px #ddd;
-		background-color: #777;
-		color: #fff;
-	}
+	}*/
 }
