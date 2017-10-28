@@ -26,17 +26,35 @@
 		height: 110px;
 		overflow-x: auto;
 		overflow-y: hidden;
-
+		text-align: center;
+		
 		.matrix-input {
-			width: 120px;
-			height: 60px;
-			color: #fff;
-			text-align: center;
-			margin-right: 10px;
-			background-position: top;
+			width: 80px;
+			height: 90px;
+			color: $color-medium;
+			font-size: 1rem;
+			border-left: solid 4px $color-medium;
+			border-right: solid 4px $color-medium;
+			border-radius: 8px;
+			padding: 10px;
 
-			.value-input-container {
+			h5 {
+				height: $elements-height;
+			}
+
+			.values-input-container {
+				width: 100%;
+				color: $color-light;
+				margin-top: 50%;
+				transform: perspective(1px) translateY(-50%);
+
+				div {
+					width: 100%;
+				}
 				
+				input {
+					@extend .input-default;
+				}
 			}
 		}
 		// .matrixes-box:hover {
