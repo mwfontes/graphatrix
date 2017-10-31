@@ -7,19 +7,16 @@
 	background-color: $color-gray-light;
 	padding-bottom: 10px;
 	display: flex;
-
 	#matrixes-buttons-container {
 		margin: 10px 0 0 10px;
 		width: 80px;
 		height: auto;
-		
 		button {
 			@extend .clickable-element;
 			margin: 1px 0;
 			width: 100%;
 		}
 	}
-	
 	#matrixes-elements-holder {
 		width: calc(100% - 110px);
 		margin: 10px 0 0 10px;
@@ -27,19 +24,22 @@
 		overflow-x: auto;
 		overflow-y: hidden;
 		text-align: center;
-		
+
 		.matrix-input {
+			position: relative;
 			width: 80px;
 			height: 90px;
 			color: $color-medium;
 			font-size: 1rem;
-			border-left: solid 4px $color-medium;
-			border-right: solid 4px $color-medium;
-			border-radius: 8px;
+			border-left: solid 1px $color-medium;
+			border-right: solid 1px $color-medium;
+			border-radius: 6px;
 			padding: 10px;
 
 			h5 {
 				height: $elements-height;
+				opacity: 1;
+				transition: all 0.25s ease;
 			}
 
 			.values-input-container {
@@ -47,36 +47,41 @@
 				color: $color-light;
 				margin-top: 50%;
 				transform: perspective(1px) translateY(-50%);
-
 				div {
 					width: 100%;
 				}
-				
 				input {
 					@extend .input-default;
 				}
 			}
-		}
-		// .matrixes-box:hover {
-		// 	background-position: bottom;
-		// }
-		// .matrixes-box input {
-		// 	width: 20px;
-		// 	height: 12px;
-		// 	border: solid 1px #ddd;
-		// 	background-color: #777;
-		// 	color: #fff;
-		// }
-	
-	}
+			
+			.erase-matrix {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				left: 50%;
+				top: 5px;
+				margin-left: -10px;
+				background-image: url('../images/close-btn.png');
+				background-position: center center;
+				background-size: contain; // display: none;
+				cursor: pointer;
+				transition: all 0.25s ease;
+				opacity: 0;
 
-	/*#matrixes-calculations-panel {
-		position: absolute;
-		width: 500px;
-		height: 0;
-		left: 166px;
-		top: 80px;
-		overflow: auto;
-		background-color: #888;
-	}*/
+				&:hover {
+					transform: scale(1.3, 1.3);
+				}
+			}
+
+			&:hover	{
+				h5 {
+					opacity: 0;
+				}
+				.erase-matrix {
+					opacity: 1;
+				}
+			}
+		}
+	}
 }
