@@ -6,7 +6,7 @@
 	<title>Graphatrix v0.6.17.01</title>
 
 	<link rel="icon" type="image/png" href="images/iconX.png" />
-	
+
 	<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600|Yantramanav:300" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="graphatrix.bundle.css" />
 	<!-- <script type="text/javascript" src="graphatrix.bundle.js"></script> -->
@@ -87,9 +87,21 @@
 				<h3>Created points</h3>
 				<div class="inline">
 					<div>
-						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
-						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
-						<div class="points"><span>X: 0.00</span><span>Y: 0.00</span><div class="erase-points"></div></div>
+						<div class="points">
+							<span>X: 0.00</span>
+							<span>Y: 0.00</span>
+							<div class="erase-points"></div>
+						</div>
+						<div class="points">
+							<span>X: 0.00</span>
+							<span>Y: 0.00</span>
+							<div class="erase-points"></div>
+						</div>
+						<div class="points">
+							<span>X: 0.00</span>
+							<span>Y: 0.00</span>
+							<div class="erase-points"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -116,19 +128,47 @@
 					<h5>Translate</h5>
 					<div class="values-input-container">
 						<div>
-							X&nbsp;<input type="text" />
+							X&nbsp;
+							<input type="text" />
 						</div>
 						<div>
-							Y&nbsp;<input type="text" />
+							Y&nbsp;
+							<input type="text" />
 						</div>
 					</div>
 					<div class="erase-matrix"></div>
 				</div>
 			</div>
-			<!-- <div id="matrixes-calculations-panel"></div> -->
-			<!-- <img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()" />
 		</div>
+			<!-- <div id="matrixes-calculations-panel"></div> -->
+			<!-- <img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()" /> -->
 		<!-- END MATRIXES -->
+
+
+			<!-- CALCULATIONS PANEL -->
+			<div id="calculations-panel" class="open">
+				
+				<div class="matrix">
+					<li>
+						<ul>1</ul>
+						<ul>0</ul>
+						<ul>0</ul>
+					</li>
+					<li>
+						<ul>0</ul>
+						<ul>1</ul>
+						<ul>0</ul>
+					</li>
+					<li>
+						<ul>0</ul>
+						<ul>0</ul>
+						<ul>1</ul>
+					</li>
+				</div>
+			</div>
+
+			<!-- DISPLAY/HIDE CALCULATIONS PANEL BUTTON -->
+			<div id="calculations-display-button" class="open">Show the calculation</div>
 
 	</article>
 </body>
