@@ -1,67 +1,87 @@
 #matrixes-container {
 	position: absolute;
-	left: 180px;
+	left: 181px;
 	top: 0;
-	width: calc(100% - 180px);
-	height: 80px;
+	width: calc(100% - 181px);
+	height: 120px;
 	background-color: $color-gray-light;
-	background-image: url('../images/matrixes-container-shadow.png');
-	background-repeat: no-repeat;
-	background-position: left top;
-	
+	padding-bottom: 10px;
+	display: flex;
 	#matrixes-buttons-container {
-		position: absolute;
-		left: 8px;
-		top: 8px;
-		width: 150px;
-		height: 70px;
-
+		margin: 10px 0 0 10px;
+		width: 80px;
+		height: auto;
 		button {
-			display: none;
+			@extend .clickable-element;
+			margin: 1px 0;
+			width: 100%;
 		}
 	}
-	
-	#matrixes-cell {
-		position: absolute;
-		height: 78px;
-		left: 166px;
-		top: 8px;
+	#matrixes-elements-holder {
+		width: calc(100% - 110px);
+		margin: 10px 0 0 10px;
+		height: 110px;
 		overflow-x: auto;
 		overflow-y: hidden;
-	}
-	
-	#matrixes-calculations-panel {
-		position: absolute;
-		width: 500px;
-		height: 0;
-		left: 166px;
-		top: 80px;
-		overflow: auto;
-		background-color: #888;
-	}
-	
-	.matrixes-box {
-		position: absolute;
-		width: 120px;
-		height: 60px;
-		left:0;
-		top: 0;
-		color: #fff;
 		text-align: center;
-		margin-right: 10px;
-		background-image: url(../images/matrix.png);
-		background-position: top;
-	}
-	
-	.matrixes-box:hover {
-		background-position: bottom;
-	}
-	
-	.matrixes-box input {
-		width: 20px;
-		height: 12px;
-		border: solid 1px #ddd;
-		background-color: #777;
-		color: #fff;
+
+		.matrix-input {
+			position: relative;
+			width: 80px;
+			height: 90px;
+			color: $color-medium;
+			font-size: 1rem;
+			border-left: solid 1px $color-medium;
+			border-right: solid 1px $color-medium;
+			border-radius: 6px;
+			padding: 10px;
+
+			h5 {
+				height: $elements-height;
+				opacity: 1;
+				transition: all 0.25s ease;
+			}
+
+			.values-input-container {
+				width: 100%;
+				color: $color-light;
+				margin-top: 50%;
+				transform: perspective(1px) translateY(-50%);
+				div {
+					width: 100%;
+				}
+				input {
+					@extend .input-default;
+				}
+			}
+			
+			.erase-matrix {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				left: 50%;
+				top: 5px;
+				margin-left: -10px;
+				background-image: url('../images/close-btn.png');
+				background-position: center center;
+				background-size: contain; // display: none;
+				cursor: pointer;
+				transition: all 0.25s ease;
+				opacity: 0;
+
+				&:hover {
+					transform: scale(1.3, 1.3);
+				}
+			}
+
+			&:hover	{
+				h5 {
+					opacity: 0;
+				}
+				.erase-matrix {
+					opacity: 1;
+				}
+			}
+		}
 	}
 }

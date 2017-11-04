@@ -17,7 +17,7 @@
 	padding: 2px;
 	line-height: 10px;
 	background-color: #eee;
-	background-image: url(../images/coords-btns.png);
+	background-image: url(images/coords-btns.png);
 	background-position: top;
 	cursor: default;
 	text-shadow: 0 1px 0 #fff;
@@ -29,7 +29,7 @@
 	padding: 2px;
 	line-height: 10px;
 	background-color: #eee;
-	background-image: url(../images/coords-btns.png);
+	background-image: url(images/coords-btns.png);
 	background-position: top;
 	cursor: default;
 }
@@ -100,17 +100,7 @@ select {
 	color: #fff;
 	width: 120px;
 	height: 60px;
-	background-image: url(../images/matrix.png);
-}
-
-#matrixes-calculation-panel {
-	position: absolute;
-	top: 80px;
-	left: 180px;
-	width: auto;
-	height: 500px;
-	overflow: scroll;
-	background-color: #888;
+	background-image: url(images/matrix.png);
 }
 
 #the-processing-button {
