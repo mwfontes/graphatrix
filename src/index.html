@@ -9,27 +9,26 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Raleway:200,400,600|Yantramanav:300" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="graphatrix.bundle.css" />
-	<!-- <script type="text/javascript" src="graphatrix.bundle.js"></script> -->
 </head>
 
 <body>
-
+	
 	<article id="wrapper">
-
+		
 		<!-- PLOTTING CANVAS -->
 		<canvas id="canvas" class="unselectable" draggable="no"></canvas>
 		<!-- END PLOTTING CANVAS -->
-
-
-
-
-
+		
+		
+		
+		
+		
 		<!-- INPUTS + OPTIONS -->
 		<div id="insert-container">
-
+			
 			<!-- Graphatrix logo on top -->
 			<div id="logo"></div>
-
+			
 			<!-- INPUT POINTS CONTAINER -->
 			<div class="inner-container">
 				<h3>Input vertices</h3>
@@ -47,7 +46,7 @@
 					<button onclick="addPoint()">Insert vertex</button>
 				</div>
 			</div>
-
+			
 			<!-- PIVOT SELECTION CONTAINER -->
 			<div class="inner-container">
 				<h3>Polygon pivot</h3>
@@ -55,7 +54,7 @@
 					<select id="pivot-select" onchange="changePivot()"></select>
 				</div>
 			</div>
-
+			
 			<!-- ORIGIN (CENTER) POINT FOR USER REFERENCE -->
 			<div class="inner-container">
 				<h3>Origin coordinates</h3>
@@ -70,7 +69,7 @@
 					</div>
 				</div>
 			</div>
-
+			
 			<!-- DRAWING OPTIONS -->
 			<div class="inner-container">
 				<h3>Options</h3>
@@ -87,7 +86,7 @@
 					</div>
 				</div>
 			</div>
-
+			
 			<!-- VERTICES ADDED BY THE USER -->
 			<div class="inner-container">
 				<h3>Created vertices</h3>
@@ -111,15 +110,15 @@
 					</div>
 				</div>
 			</div>
-
+			
 		</div>
 		<!-- END INPUTS + OPTIONS -->
-
-
-
-
-
-
+		
+		
+		
+		
+		
+		
 		<!-- MATRIXES -->
 		<div id="matrixes-container">
 			<div id="matrixes-buttons-container">
@@ -146,37 +145,39 @@
 				</div>
 			</div>
 		</div>
-			<!-- <div id="matrixes-calculations-panel"></div> -->
-			<!-- <img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()" /> -->
+		<!-- <div id="matrixes-calculations-panel"></div> -->
+		<!-- <img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()" /> -->
 		<!-- END MATRIXES -->
-
-
-			<!-- CALCULATIONS PANEL -->
-			<div id="calculations-panel" class="open">
-				
-				<div class="matrix">
-					<li>
-						<ul>1</ul>
-						<ul>0</ul>
-						<ul>0</ul>
-					</li>
-					<li>
-						<ul>0</ul>
-						<ul>1</ul>
-						<ul>0</ul>
-					</li>
-					<li>
-						<ul>0</ul>
-						<ul>0</ul>
-						<ul>1</ul>
-					</li>
-				</div>
+		
+		
+		<!-- CALCULATIONS PANEL -->
+		<div id="calculations-panel">
+			
+			<div class="matrix">
+				<li>
+					<ul>1</ul>
+					<ul>0</ul>
+					<ul>0</ul>
+				</li>
+				<li>
+					<ul>0</ul>
+					<ul>1</ul>
+					<ul>0</ul>
+				</li>
+				<li>
+					<ul>0</ul>
+					<ul>0</ul>
+					<ul>1</ul>
+				</li>
 			</div>
-
-			<!-- DISPLAY/HIDE CALCULATIONS PANEL BUTTON -->
-			<div id="calculations-display-button" class="open">Show the calculation</div>
-
+		</div>
+		
+		<!-- DISPLAY/HIDE CALCULATIONS PANEL BUTTON -->
+		<div id="calculations-display-button">Show the calculation</div>
+		
 	</article>
+	
+	<script type="text/javascript" src="graphatrix.bundle.js"></script>
 </body>
 
 </html>

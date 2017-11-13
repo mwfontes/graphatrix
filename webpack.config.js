@@ -7,7 +7,7 @@ module.exports = {
 	entry: './src/js/app.js',
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'grapathix.bundle.js',
+		filename: 'graphatrix.bundle.js',
 		publicPath: ""
 	},
 	devtool: 'source-map',
