@@ -16,10 +16,15 @@ class Graphatrix {
         // this.canvas.draw();
         this.canvas = new Canvas(document.getElementById('canvas'));
 
-        let vtx = new Vertex(1.00, 2.00);
-        vtx.original.x = 5;
-        vtx.update();
-        console.log(vtx);
+
+        let i;
+        for (i = 0; i < 5; i += 1) {
+            let vtx = new Vertex(i, 1.00 * i, 1.33 * i);
+            vtx.x = 8;
+            vtx.modifiedX = 20;
+            vtx.update();
+        }
+
     }
 }
 

@@ -24,10 +24,23 @@ class Canvas {
 
     // sets the relative center from where to draw
     // :: the plane's 0,0
-    setCenter(_w, _h) {
+    resetCenter() {
         this.center = [
-            (_w / 2) - this.dragDelta[0],
-            (_h / 2) - this.dragDelta[1]
+            (this.size[0] / 2) - this.dragDelta[0],
+            (this.size[1] / 2) - this.dragDelta[1]
+        ];
+    }
+
+    defCenter() {
+
+        let currentCenter = [
+            this.center[0],
+            this.center[1]
+        ]
+
+        this.center = [
+            currentCenter[0] - this.dragDelta[0],
+            currentCenter[1] - this.dragDelta[1]
         ];
     }
 
@@ -177,7 +190,6 @@ class Canvas {
 
         this.grid();
         this.cartesianPlane();
-        // geraPlano();
 
         // DESENHA FORMA BASE - ***** NAO MODIFICADA *****
         // if (_allData.points.length > 1) {
@@ -237,22 +249,24 @@ class Canvas {
 
         let _this = this;
 
-        let startPosition = [
+        let lastPointerPosition = [
             evt.pageX,
             evt.pageY
-        ]
-
-        let currentCenter = [
-            this.center[0],
-            this.center[1]
-        ]
+        ];
 
         function dragMove(evt) {
 
-            _this.center = [
-                currentCenter[0] - (startPosition[0] - evt.pageX),
-                currentCenter[1] - (startPosition[1] - evt.pageY)
+            _this.dragDelta = [
+                lastPointerPosition[0] - evt.pageX,
+                lastPointerPosition[1] - evt.pageY
             ];
+
+            lastPointerPosition = [
+                evt.pageX,
+                evt.pageY
+            ];
+
+            _this.defCenter();
 
             _this.draw();
         }
@@ -266,12 +280,43 @@ class Canvas {
         window.addEventListener("mouseup", stopDrag);
     }
 
+    resize() {
+        //
+        // Notes the previous size before resizing. double vars to prevent pointing
+        let prevSizeX = this.size[0];
+        let prevSizeY = this.size[1];
+
+        // gets the current center
+        let currentCenter = [
+            this.center[0],
+            this.center[1]
+        ];
+
+        // redefines canvas size
+        this.defSize();
+
+        // calculates the size modification of the window
+        let resizePercentageX = this.size[0] / prevSizeX; 
+        let resizePercentageY = this.size[1] / prevSizeY;
+
+        // reset the center according to the percentage of the window resize
+        this.dragDelta = [
+            currentCenter[0] - (currentCenter[0] * resizePercentageX),
+            currentCenter[1] - (currentCenter[1] * resizePercentageY)
+        ];
+        this.defCenter();
+        this.draw();
+    }
+
     init() {
         this.defSize();
-        this.setCenter(this.size[0], this.size[1]);
+        this.resetCenter();
         this.draw();
 
         // CANVAS LISTENERS
+        
+        // OTHER LISTENERS
+        window.addEventListener("resize", this.resize.bind(this))
 
         // hold and drag
         this.canvasDOM.addEventListener("mousedown", this.drag.bind(this));

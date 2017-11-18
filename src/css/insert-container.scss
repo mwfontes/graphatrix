@@ -90,14 +90,54 @@
 
 		.points {
 			@extend .clickable-element;
+			background-color: transparent;
 			position: relative;
-			font-weight: 700;
-			font-size: 0.7rem;
 			margin: 1px 0;
 			cursor: ns-resize;
-			// display: flex;
-			// justify-content: space-evenly;
 			transition: all 0.25s ease;
+			color: $color-light;
+
+			&:hover {
+				background-color: inherit;
+
+				.value {
+					background-color: $color-medium;
+					color: $color-gray-light;
+					display: none !important;
+				}
+
+				.original {
+					display: inline-block !important;
+				}
+			}
+			
+			.index {
+				font-weight: 700;
+				font-size: 0.7rem;
+				display: inline-block;
+				width: 20%;
+				text-align: center;
+				border: 1px solid $color-light;
+				box-sizing: border-box;
+				border-radius: 2px;
+			}
+			
+			.value {
+				font-weight: 700;
+				font-size: 0.7rem;
+				display: inline-block;
+				width: 40%;
+				height: 100%;
+				text-align: center;
+				border-left: 1px solid $color-gray-light;
+				box-sizing: border-box;
+				border-radius: 2px;
+				transition: all 0.25s ease;
+			}
+
+			.original {
+				display: none;
+			}
 
 			.erase-points {
 				position: absolute;
