@@ -5,7 +5,7 @@
 	width: 160px;
 	height: calc(100% - 20px);
 	background-color: $color-gray-light;
-	padding: 10px;
+	padding: 140px 10px 10px 10px;
 	color: #fff;
 	border-right: 1px solid $color-medium-light;
 
@@ -14,13 +14,29 @@
 	}
 	
 	#logo {
+		position: absolute;
 		width: 100%;
-		height: 76px;
-		margin: 1px 0 12px 0;
-		background-image: url('../images/logo.png');
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: center center;
+		height: 131px;
+		box-sizing: border-box;
+		left: 0;
+		top: 0;
+		background: linear-gradient(-45deg, $color-medium, $color-light);
+		padding: 10px 15px;
+		font: 0/0 a;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			vertical-align: middle;
+			height: 100%;
+		}
+
+		img {
+			display: inline-block;
+			vertical-align: middle;
+			width: 100%;
+			height: auto;
+		}
 	}
 
 	.inner-container {
@@ -178,6 +194,11 @@
 				}
 			}
 		}
+	}
+
+	.borderless {
+		margin-top: 0 !important;
+		border: none !important;
 	}
 
 }
