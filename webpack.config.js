@@ -51,7 +51,7 @@ module.exports = {
 			},
 			{
 				context: "./src/images",
-				from: 'iconX.png',
+				from: '*',
 				to: './images'
 			}/*,
 			{
