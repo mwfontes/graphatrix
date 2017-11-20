@@ -13,6 +13,11 @@ class InputController {
             button: document.getElementById("input-button")
         }
 
+        this.options = {
+            closePath: document.getElementById("open-close-path"),
+            showGrid: document.getElementById("show-grid")
+        }
+
         this.addListeners();
     }
 
@@ -32,7 +37,12 @@ class InputController {
 
     addListeners() {
         //
+        // Insert Vertex Button
         this.input.button.addEventListener("click", this.addVertex.bind(this));
+
+        // OPTIONS (close path + show grid)
+        this.options.closePath.addEventListener("click", this.parent.canvas.draw.bind(this.parent.canvas));
+        this.options.showGrid.addEventListener("click", this.parent.canvas.draw.bind(this.parent.canvas));
     }
 }
 

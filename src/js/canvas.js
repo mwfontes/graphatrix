@@ -1,7 +1,8 @@
 class Canvas {
 
-    constructor(_canvasElement) {
+    constructor(_parent, _canvasElement) {
 
+        this.parent = _parent;
         this.canvasDOM = _canvasElement; // canvas DOM element
         this.canvas = this.canvasDOM.getContext('2d'); // drawing canvas
         this.size = [0, 0]; // canvas' size
@@ -48,7 +49,6 @@ class Canvas {
     setScale(evt) {
         let delta = Math.max(-1, Math.min(1, evt.wheelDelta));
         this.scale = Math.max(4, Math.min(100, this.scale + (delta * 5)));
-        this.draw();
     }
 
     // Draws the target at the center of the polygon
@@ -186,30 +186,48 @@ class Canvas {
 
 
     draw() {
+        //
+        // Clears the canvas
         this.canvas.clearRect(0, 0, this.size[0], this.size[1]);
 
-        this.grid();
+        // Draws the grid if checkbox is checked
+        if (this.parent.inputController.options.showGrid.checked) {
+            this.grid();
+        }
+
         this.cartesianPlane();
+        let i;
 
         // DESENHA FORMA BASE - ***** NAO MODIFICADA *****
-        // if (_allData.points.length > 1) {
+        if (this.parent.vertices.length > 1) {
 
-        //     this.canvas.beginPath();
-        //     var calcPointsXY = calculaOriginal(_allData.points[0].x, _allData.points[0].y);
-        //     this.canvas.moveTo(calcPointsXY[0], calcPointsXY[1]);
-        //     for (var c = 1; c < _allData.points.length; c++) {
-        //         calcPointsXY = calculaOriginal(_allData.points[c].x, _allData.points[c].y);
-        //         this.canvas.lineTo(calcPointsXY[0], calcPointsXY[1]);
-        //     }
+            this.canvas.beginPath();
+            
+            // vertice inicial
+            // var calcPointsXY = calculaOriginal(_allData.points[0].x, _allData.points[0].y);
+            // this.canvas.moveTo(calcPointsXY[0], calcPointsXY[1]);
+            this.canvas.moveTo(
+                (this.parent.vertices[0].x * this.scale) + this.center[0],
+                (this.parent.vertices[0].y * this.scale) + this.center[1]
+            );
 
-        //     if (document.getElementById("open-close-path").checked) {
-        //         this.canvas.closePath();
-        //     }
+            for (i = 1; i < this.parent.vertices.length; i++) {
+                // calcPointsXY = calculaOriginal(_allData.points[c].x, _allData.points[c].y);
+                // this.canvas.lineTo(calcPointsXY[0], calcPointsXY[1]);
+                this.canvas.lineTo(
+                    (this.parent.vertices[i].x * this.scale) + this.center[0],
+                    (this.parent.vertices[i].y * this.scale) + this.center[1]
+                );
+            }
 
-        //     this.canvas.strokeStyle = "#abc";
-        //     this.canvas.lineWidth = 2;
-        //     this.canvas.stroke();
-        // }
+            if (this.parent.inputController.options.closePath.checked) {
+                this.canvas.closePath();
+            }
+
+            this.canvas.strokeStyle = "#abc";
+            this.canvas.lineWidth = 2;
+            this.canvas.stroke();
+        }
 
         // // DESENHA FORMA ***** MODIFICADA *****
         // if (_allData.points.length > 1) {
@@ -311,7 +329,7 @@ class Canvas {
     init() {
         this.defSize();
         this.resetCenter();
-        this.draw();
+        // this.draw();
 
         // CANVAS LISTENERS
         

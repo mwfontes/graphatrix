@@ -8,13 +8,16 @@ class Graphatrix {
 
     constructor () {
 
-        this.canvas = new Canvas(document.getElementById('canvas'));
-        this.inputController = new InputController(this);
+        this.canvas = undefined;
+        this.inputController = undefined;
         this.vertices = [];
     }
     
     start() {
         
+        this.canvas = new Canvas(this, document.getElementById('canvas'));
+        this.inputController = new InputController(this);
+
         let i;
         for (i = 0; i < 5; i += 1) {
             this.vertices.push(new Vertex(this, {
@@ -23,6 +26,8 @@ class Graphatrix {
                 y: i * i
             }));
         }
+
+        this.canvas.draw();
 
     }
 }
