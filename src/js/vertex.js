@@ -91,6 +91,8 @@ class Vertex {
             el.index = this.parent.vertices.indexOf(el) + 1;
             el.update();
         }
+
+        this.parent.canvas.draw();
     }
 
 }

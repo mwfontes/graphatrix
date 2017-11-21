@@ -11,6 +11,9 @@ class Canvas {
         this.scale = 20; // Drawing scale
         this.margins = [180, 130];
 
+        // binds
+        this.draw = this.draw.bind(this)
+
         this.init();
     }
 
@@ -202,21 +205,17 @@ class Canvas {
         if (this.parent.vertices.length > 1) {
 
             this.canvas.beginPath();
+            this.canvas.lineCap = "round";
             
-            // vertice inicial
-            // var calcPointsXY = calculaOriginal(_allData.points[0].x, _allData.points[0].y);
-            // this.canvas.moveTo(calcPointsXY[0], calcPointsXY[1]);
             this.canvas.moveTo(
-                (this.parent.vertices[0].x * this.scale) + this.center[0],
-                (this.parent.vertices[0].y * this.scale) + this.center[1]
+                this.center[0] + (this.parent.vertices[0].x * this.scale),
+                this.center[1] + (this.parent.vertices[0].y * -this.scale)
             );
 
             for (i = 1; i < this.parent.vertices.length; i++) {
-                // calcPointsXY = calculaOriginal(_allData.points[c].x, _allData.points[c].y);
-                // this.canvas.lineTo(calcPointsXY[0], calcPointsXY[1]);
                 this.canvas.lineTo(
-                    (this.parent.vertices[i].x * this.scale) + this.center[0],
-                    (this.parent.vertices[i].y * this.scale) + this.center[1]
+                    this.center[0] + (this.parent.vertices[i].x * this.scale),
+                    this.center[1] + (this.parent.vertices[i].y * -this.scale) 
                 );
             }
 
@@ -230,36 +229,6 @@ class Canvas {
         }
 
         // // DESENHA FORMA ***** MODIFICADA *****
-        // if (_allData.points.length > 1) {
-
-        //     this.canvas.beginPath();
-        //     calcPointsXY = calcula(_allData.points[0].x, _allData.points[0].y, false);
-        //     this.canvas.moveTo(calcPointsXY[0], calcPointsXY[1]);
-        //     for (var c = 1; c < _allData.points.length; c++) {
-        //         calcPointsXY = calcula(_allData.points[c].x, _allData.points[c].y, false);
-        //         this.canvas.lineTo(calcPointsXY[0], calcPointsXY[1]);
-        //     }
-
-        //     if (document.getElementById("open-close-path").checked) {
-        //         this.canvas.closePath();
-        //     }
-
-        //     this.canvas.strokeStyle = "#000";
-        //     this.canvas.lineWidth = 2;
-        //     this.canvas.stroke();
-        // }
-
-        // if (_allData.points.length > 0) {
-        //     for (var g = 0; g < _allData.points.length; g++) {
-        //         var calcPointsXY = calcula(_allData.points[g].x, _allData.points[g].y, false);
-
-        //         this.canvas.beginPath();
-        //         this.canvas.arc(calcPointsXY[0], calcPointsXY[1], 3, 0, 2*Math.PI);
-        //         this.canvas.fillStyle = "#d00";
-        //         this.canvas.fill();
-        //         this.canvas.closePath();
-        //     }
-        // }
 
     }
 
@@ -329,7 +298,6 @@ class Canvas {
     init() {
         this.defSize();
         this.resetCenter();
-        // this.draw();
 
         // CANVAS LISTENERS
         

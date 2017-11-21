@@ -18,14 +18,14 @@ class Graphatrix {
         this.canvas = new Canvas(this, document.getElementById('canvas'));
         this.inputController = new InputController(this);
 
-        let i;
-        for (i = 0; i < 5; i += 1) {
-            this.vertices.push(new Vertex(this, {
-                index: this.vertices.length + 1,
-                x: 1 + i,
-                y: i * i
-            }));
-        }
+        // let i;
+        // for (i = 0; i < 3; i += 1) {
+        //     this.vertices.push(new Vertex(this, {
+        //         index: this.vertices.length + 1,
+        //         x: 1 + i,
+        //         y: i * i
+        //     }));
+        // }
 
         this.canvas.draw();
 
