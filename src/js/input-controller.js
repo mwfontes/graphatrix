@@ -17,7 +17,8 @@ class InputController {
 
 		this.options = {
 			closePath: document.getElementById("open-close-path"),
-			showGrid: document.getElementById("show-grid")
+			showGrid: document.getElementById("show-grid"),
+			showNumbers: document.getElementById("show-numbers")
 		}
 
 		this.addVertex = this.addVertex.bind(this);
@@ -83,6 +84,7 @@ class InputController {
 		// OPTIONS (close path + show grid)
 		this.options.closePath.addEventListener("click", this.parent.canvas.draw);
 		this.options.showGrid.addEventListener("click", this.parent.canvas.draw);
+		this.options.showNumbers.addEventListener("click", this.parent.canvas.draw);
 	}
 }
 

@@ -51,7 +51,7 @@ class Canvas {
     // Increases/Decreases the scaling factor when the user scrolls over the canvas
     setScale(evt) {
         let delta = Math.max(-1, Math.min(1, evt.wheelDelta));
-        this.scale = Math.max(4, Math.min(100, this.scale + (delta * 5)));
+        this.scale = Math.max(8, Math.min(100, this.scale + (delta * 5)));
 
         this.draw();
     }
@@ -126,14 +126,23 @@ class Canvas {
         }
         // }
     }
-
+    
+    // returns the right text position
+    getModTextPosition(_min, _max, _index) {
+        if (this.scale < 20 && _index % 2 == 0) { // if less than 20px and NOT ODD
+            return _min;
+        } else {
+            return _max;
+        }
+    }
 
     cartesianPlane() {
 
-        this.canvas.strokeStyle = "#aaa";
-        this.canvas.fillStyle = "#aaa";
+        this.canvas.strokeStyle = "#000";
+        this.canvas.fillStyle = "#000";
         this.canvas.lineWidth = 1;
-        this.canvas.font = "12px sans-serif";
+        this.canvas.font = "10px Raleway";
+        this.canvas.textBaseline = "middle";
 
         // LINHA X
         this.canvas.beginPath();
@@ -142,24 +151,37 @@ class Canvas {
         this.canvas.closePath();
         this.canvas.stroke();
 
-        let i;
+        let i, count;
 
         // -X
+        count = -1;
         for (i = this.center[0] - this.scale; i > 0; i -= this.scale) {
             this.canvas.beginPath();
             this.canvas.moveTo(Math.floor(i) + 0.5, this.center[1] - 3);
             this.canvas.lineTo(Math.floor(i) + 0.5, this.center[1] + 3);
             this.canvas.closePath();
             this.canvas.stroke();
+            this.canvas.textAlign = "center";
+            
+            if (this.parent.inputController.options.showNumbers.checked) {
+                this.canvas.fillText(count, i, this.center[1] + this.getModTextPosition(-10, 8, count), 100);
+                count--;
+            }
         }
 
         // +X
+        count = 1;
         for (i = this.center[0] + this.scale; i < this.size[0]; i += this.scale) {
             this.canvas.beginPath();
             this.canvas.moveTo(Math.floor(i) + 0.5, this.center[1] - 3);
             this.canvas.lineTo(Math.floor(i) + 0.5, this.center[1] + 3);
             this.canvas.closePath();
             this.canvas.stroke();
+            this.canvas.textAlign = "center";
+            if (this.parent.inputController.options.showNumbers.checked) {
+                this.canvas.fillText(count, i, this.center[1] + this.getModTextPosition(-10, 8, count), 100);
+                count++;
+            }
         }
 
         // LINHA Y
@@ -170,21 +192,33 @@ class Canvas {
         this.canvas.stroke();
 
         // +Y
+        count = 1;
         for (i = this.center[1] - this.scale; i > 0; i -= this.scale) {
             this.canvas.beginPath();
             this.canvas.moveTo(this.center[0] - 2.5, Math.floor(i) + 0.5);
             this.canvas.lineTo(this.center[0] + 3.5, Math.floor(i) + 0.5);
             this.canvas.closePath();
             this.canvas.stroke();
+            if (this.parent.inputController.options.showNumbers.checked) {
+                this.canvas.textAlign = this.getModTextPosition(-12, 6, count) < 0 ? "right": "left";
+                this.canvas.fillText(count, this.center[0] + this.getModTextPosition(-6, 6, count), i, 100);
+                count++;
+            }
         }
 
         // -Y
+        count = -1;
         for (i = this.center[1] + this.scale; i < this.size[1]; i += this.scale) {
             this.canvas.beginPath();
             this.canvas.moveTo(this.center[0] - 2.5, Math.floor(i) + 0.5);
             this.canvas.lineTo(this.center[0] + 3.5, Math.floor(i) + 0.5);
             this.canvas.closePath();
             this.canvas.stroke();
+            if (this.parent.inputController.options.showNumbers.checked) {
+                this.canvas.textAlign = this.getModTextPosition(-12, 6, count) < 0 ? "right": "left";
+                this.canvas.fillText(count, this.center[0] + this.getModTextPosition(-6, 6, count), i, 100);
+                count--;
+            }
         }
 
     }
