@@ -48,10 +48,12 @@ class Canvas {
         ];
     }
 
-    // TBD
+    // Increases/Decreases the scaling factor when the user scrolls over the canvas
     setScale(evt) {
         let delta = Math.max(-1, Math.min(1, evt.wheelDelta));
         this.scale = Math.max(4, Math.min(100, this.scale + (delta * 5)));
+
+        this.draw();
     }
 
     // Draws the target at the center of the polygon
@@ -205,7 +207,7 @@ class Canvas {
         if (this.parent.vertices.length > 1) {
 
             this.canvas.beginPath();
-            this.canvas.lineCap = "round";
+            this.canvas.lineJoin = "bevel";
             
             this.canvas.moveTo(
                 this.center[0] + (this.parent.vertices[0].x * this.scale),
