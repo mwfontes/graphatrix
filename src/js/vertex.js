@@ -26,7 +26,7 @@ class Vertex {
 
     createDOMElement() {
         let container = document.createElement("div");
-        container.className = "points";
+        container.className = "vertex";
         document.getElementById("vertices-container").appendChild(container);
 
         let index = document.createElement("div");
@@ -69,8 +69,19 @@ class Vertex {
 
     update() {
         //
+        // updates visible values (DOM Element)
         for (let item of this.elementsToUpdate) {
             item.element.innerHTML = item.preValueText + this[item.key];
+        }
+
+        // Pivot assignment
+        let currentPivot = this.parent.inputController.pivotsList.selectedOptions[0];
+        if (currentPivot) {
+            if (currentPivot.vertex === this) {
+                this.DOMElement.setAttribute("data-pivot", "");
+            } else {
+                this.DOMElement.removeAttribute("data-pivot");
+            }
         }
     }
 
@@ -91,6 +102,13 @@ class Vertex {
             el.index = this.parent.vertices.indexOf(el) + 1;
             el.update();
         }
+
+        // remove from the select pivot
+        this.parent.inputController.pivotsList.remove(index);
+        
+        // Update the pivots Indexes
+        this.parent.inputController.updatePivotsIndexes();
+        
 
         this.parent.canvas.draw();
     }

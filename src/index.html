@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Graphatrix v0.6.17.01</title>
+	<title>Graphatrix</title>
 
 	<link rel="icon" type="image/png" href="images/iconX.png" />
 
@@ -53,7 +53,9 @@
 			<div class="inner-container">
 				<h3>Polygon pivot</h3>
 				<div class="inline">
-					<select id="pivot-select" onchange="changePivot()"></select>
+					<div class="select-wrapper">
+						<select id="pivot-select"></select>
+					</div>
 				</div>
 			</div>
 			
@@ -115,33 +117,16 @@
 		<!-- MATRIXES -->
 		<div id="matrixes-container">
 			<div id="matrixes-buttons-container">
-				<button onclick="addTranslationMatrix()">Translate</button>
-				<button onclick="addRotationMatrix()">Rotate</button>
-				<button onclick="addResizeMatrix()">Resize</button>
-				<button onclick="addReflectionMatrix()">Reflect</button>
-				<button onclick="addShearMatrix()">Shear</button>
+				<button id="do-translate">Translate</button>
+				<button id="do-rotate">Rotate</button>
+				<button id="do-resize">Resize</button>
+				<button id="do-reflect">Reflect</button>
+				<button id="do-shear">Shear</button>
 			</div>
 			<div id="matrixes-elements-holder">
-				<div class="matrix-input">
-					<h5>Translate</h5>
-					<div class="values-input-container">
-						<div>
-							X&nbsp;
-							<input type="text" />
-						</div>
-						<div>
-							Y&nbsp;
-							<input type="text" />
-						</div>
-					</div>
-					<div class="erase-matrix"></div>
-				</div>
+				<!-- HERE COMES THE MATRIXES -->
 			</div>
 		</div>
-		<!-- <div id="matrixes-calculations-panel"></div> -->
-		<!-- <img src="images/theprocessing-btn.png" width="100" height="20" id="the-processing-button" onclick="showCalculationsPanel()" /> -->
-		<!-- END MATRIXES -->
-		
 		
 		<!-- CALCULATIONS PANEL -->
 		<div id="calculations-panel">

@@ -138,13 +138,13 @@ class Canvas {
 
     cartesianPlane() {
 
-        this.canvas.strokeStyle = "#000";
-        this.canvas.fillStyle = "#000";
         this.canvas.lineWidth = 1;
         this.canvas.font = "10px Raleway";
         this.canvas.textBaseline = "middle";
 
         // LINHA X
+        this.canvas.strokeStyle = "#d17878";
+        this.canvas.fillStyle = "#d17878";
         this.canvas.beginPath();
         this.canvas.moveTo(0, this.center[1]);
         this.canvas.lineTo(this.size[0], this.center[1]);
@@ -185,6 +185,8 @@ class Canvas {
         }
 
         // LINHA Y
+        this.canvas.strokeStyle = "#81bf68";
+        this.canvas.fillStyle = "#81bf68";
         this.canvas.beginPath();
         this.canvas.moveTo(this.center[0] + 0.5, 0);
         this.canvas.lineTo(this.center[0] + 0.5, this.size[1]);

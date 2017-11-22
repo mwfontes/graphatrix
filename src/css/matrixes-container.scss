@@ -25,8 +25,8 @@
 		height: 110px;
 		overflow-x: auto;
 		overflow-y: hidden;
-		text-align: center;
-
+		vertical-align: text-top;
+		
 		.matrix-input {
 			position: relative;
 			width: 80px;
@@ -37,6 +37,8 @@
 			border-right: solid 1px $color-medium;
 			border-radius: 6px;
 			padding: 10px;
+			display: inline-block;
+			text-align: center;
 
 			h5 {
 				height: $elements-height;
@@ -50,10 +52,11 @@
 				margin-top: 50%;
 				transform: perspective(1px) translateY(-50%);
 				div {
+					display: block;
 					width: 100%;
-				}
-				input {
-					@extend .input-default;
+					input {
+						@extend .input-default;
+					}
 				}
 			}
 			

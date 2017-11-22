@@ -21,9 +21,19 @@ class InputController {
 			showNumbers: document.getElementById("show-numbers")
 		}
 
+		// Functions Binds
 		this.addVertex = this.addVertex.bind(this);
+		this.switchPivot = this.switchPivot.bind(this);
 
 		this.addListeners();
+	}
+
+	updatePivotsIndexes() {
+		//
+		for (let pivot of this.pivotsList.options) {
+			console.log(pivot);
+			pivot.innerHTML = pivot.vertex.index;
+		}
 	}
 
 	addVertex(evt) {
@@ -55,22 +65,45 @@ class InputController {
 			y: this.input.y.value
 		});
 
+		// if list is empty, set the first vertex as pivot
+		if (this.parent.vertices.length === 0) {
+			this.parent.pivotVertex = vtx;
+		}
+		
 		this.parent.vertices.push(vtx);
-
+		
 		// Add the new vertex information to the pivots list
 		let option = document.createElement("option");
 		option.value = vtx.index;
 		option.innerHTML = vtx.index;
 		option.vertex = vtx;
 		this.pivotsList.appendChild(option);
-
+		
 		// clear the inputs
 		this.input.x.value = "";
 		this.input.y.value = "";
 
+		// Apply all transformations to the vertex
+		vtx.update();
+		
 		// draw
 		this.parent.canvas.draw();
 	}
+
+
+	switchPivot(evt) {
+		//
+		// get the previous pivot to update later
+		let previousPivot = this.parent.pivotVertex;
+
+		// Switch to the new vertex
+		this.parent.pivotVertex = evt.target.selectedOptions[0].vertex;
+
+		// Update both vertices
+		previousPivot.update();
+		this.parent.pivotVertex.update();
+	}
+
 
 	addListeners() {
 		//
@@ -85,6 +118,9 @@ class InputController {
 		this.options.closePath.addEventListener("click", this.parent.canvas.draw);
 		this.options.showGrid.addEventListener("click", this.parent.canvas.draw);
 		this.options.showNumbers.addEventListener("click", this.parent.canvas.draw);
+
+		// Pivot selection
+		this.pivotsList.addEventListener("change", this.switchPivot);
 	}
 }
 

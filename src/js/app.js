@@ -2,6 +2,7 @@ import '../css/global.scss';
 
 import Canvas from './canvas';
 import Vertex from './vertex';
+import TranslateMatrix from './matrixes/translate';
 import InputController from './input-controller';
 
 class Graphatrix {
@@ -11,6 +12,7 @@ class Graphatrix {
         this.canvas = undefined;
         this.inputController = undefined;
         this.vertices = [];
+        this.pivotVertex = undefined;
     }
     
     start() {
@@ -18,17 +20,10 @@ class Graphatrix {
         this.canvas = new Canvas(this, document.getElementById('canvas'));
         this.inputController = new InputController(this);
 
-        // let i;
-        // for (i = 0; i < 3; i += 1) {
-        //     this.vertices.push(new Vertex(this, {
-        //         index: this.vertices.length + 1,
-        //         x: 1 + i,
-        //         y: i * i
-        //     }));
-        // }
+        let transMat = new TranslateMatrix(this);
 
+        // Make the fisrt draw. !!!Should be the last command!!!
         this.canvas.draw();
-
     }
 }
 
