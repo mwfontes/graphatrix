@@ -9,10 +9,12 @@ class Graphatrix {
 
     constructor () {
 
-        this.canvas = undefined;
-        this.inputController = undefined;
-        this.vertices = [];
-        this.pivotVertex = undefined;
+        this.canvas = undefined; // the drawing/plotting canvas
+        this.inputController = undefined; // Controls the user interaction in the input tab
+        this.vertices = []; // List of created vertices by the user
+        this.pivotVertex = undefined; // Points to the current vertex marked as pivot
+        this.massCenter = undefined; // A vertex that is the polygon mass center
+        this.absoluteCenter = undefined; // A vertex that is the polygon absolute center
     }
     
     start() {

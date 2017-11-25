@@ -26,7 +26,19 @@ class InputController {
 		this.switchPivot = this.switchPivot.bind(this);
 
 		this.addListeners();
+		this.init();
 	}
+
+
+	addPivot(_vtx) {
+		//
+		let option = document.createElement("option");
+		option.value = _vtx.index;
+		option.innerHTML = _vtx.displayName;
+		option.vertex = _vtx;
+		this.pivotsList.appendChild(option);
+	}
+
 
 	updatePivotsIndexes() {
 		//
@@ -35,6 +47,12 @@ class InputController {
 			pivot.innerHTML = pivot.vertex.index;
 		}
 	}
+
+
+	setPivot(_vtx) {
+		this.parent.pivotVertex = _vtx;
+	}
+
 
 	addVertex(evt) {
 		// 
@@ -61,23 +79,20 @@ class InputController {
 		// Add new vertex to the Graphatrix global vertices
 		let vtx = new Vertex(this.parent, {
 			index: this.parent.vertices.length + 1,
+			displayName: this.parent.vertices.length + 1,
 			x: this.input.x.value,
 			y: this.input.y.value
 		});
 
 		// if list is empty, set the first vertex as pivot
-		if (this.parent.vertices.length === 0) {
-			this.parent.pivotVertex = vtx;
-		}
+		// if (this.parent.vertices.length === 0) {
+		// 	this.setPivot(vtx);
+		// }
 		
 		this.parent.vertices.push(vtx);
 		
 		// Add the new vertex information to the pivots list
-		let option = document.createElement("option");
-		option.value = vtx.index;
-		option.innerHTML = vtx.index;
-		option.vertex = vtx;
-		this.pivotsList.appendChild(option);
+		this.addPivot(vtx);
 		
 		// clear the inputs
 		this.input.x.value = "";
@@ -100,8 +115,13 @@ class InputController {
 		this.parent.pivotVertex = evt.target.selectedOptions[0].vertex;
 
 		// Update both vertices
-		previousPivot.update();
-		this.parent.pivotVertex.update();
+		if (previousPivot.index != -1) {
+			previousPivot.update();
+		}
+
+		if (this.parent.pivotVertex.index != -1) {
+			this.parent.pivotVertex.update();
+		}
 	}
 
 
@@ -121,6 +141,26 @@ class InputController {
 
 		// Pivot selection
 		this.pivotsList.addEventListener("change", this.switchPivot);
+	}
+
+	init() {
+		//
+		// creates both generic pivots: Mass center + absolute center
+		let mainPivots = new Vertex(this.parent, {
+			index: -1,
+			displayName: "",
+			x: 0,
+			y: 0
+		});
+
+		this.parent.massCenter = Object.create(mainPivots);
+		this.parent.massCenter.displayName = "Mass center";
+		this.addPivot(this.parent.massCenter);
+		this.setPivot(this.parent.massCenter);
+		
+		this.parent.absoluteCenter = Object.create(mainPivots);
+		this.parent.absoluteCenter.displayName = "Absolute center";
+		this.addPivot(this.parent.absoluteCenter);
 	}
 }
 

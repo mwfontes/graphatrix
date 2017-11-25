@@ -19,9 +19,12 @@ class Vertex {
         this.modifiedY = parseFloat(_params.y);
         this.DOMElement = undefined;
         this.index = _params.index;
+        this.displayName = _params.displayName;
         this.elementsToUpdate = [];
 
-        this.DOMElement = this.createDOMElement();
+        if (_params.index != -1) {
+            this.DOMElement = this.createDOMElement();
+        }
     }
 
     createDOMElement() {
