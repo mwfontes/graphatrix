@@ -1,4 +1,5 @@
 import Vertex from './vertex';
+import MatrixOperations from './matrixes/matrix-operations';
 
 class InputController {
 
@@ -50,7 +51,55 @@ class InputController {
 
 
 	setPivot(_vtx) {
+		//
 		this.parent.pivotVertex = _vtx;
+	}
+
+	defPivotPosition() {
+		//
+		// abort if the selected value is empty (it means the list is empty)
+		if (this.pivotsList.value == "" || (this.pivotsList.value != "absolute" && this.pivotsList.value != "mass")) {
+			return;
+		}
+		let i;
+		console.log("entrou");
+		// Resets the pivot position
+		this.parent.pivotVertex.x = 0;
+		this.parent.pivotVertex.y = 0;
+
+		if (this.pivotsList.value == "absolute") {
+			//
+			let minX = this.parent.vertices[0].x;
+			let maxX = this.parent.vertices[0].x;
+			let minY = this.parent.vertices[0].y;
+			let maxY = this.parent.vertices[0].y;
+
+			for (i = 0; i < this.parent.vertices.length; i++) {
+				if (this.parent.vertices[i].x < minX) {
+					minX = this.parent.vertices[i].x;
+				} else if (this.parent.vertices[i].x > maxX) {
+					maxX = this.parent.vertices[i].x;
+				}
+
+				if (this.parent.vertices[i].y < minY) {
+					minY = this.parent.vertices[i].y;
+				} else if (this.parent.vertices[i].y > maxY) {
+					maxY = this.parent.vertices[i].y;
+				}
+			}
+	
+			this.parent.pivotVertex.x = (maxX + minX) / 2;
+			this.parent.pivotVertex.y = (maxY + minY) / 2;
+
+		} else if (this.pivotsList.value == "mass") {
+			//
+			// sums it all and divide by the number of vertices
+			for (i = 0; i < this.parent.vertices.length; i++) {
+				this.parent.pivotVertex.x += (this.parent.vertices[i].x) / this.parent.vertices.length;
+				this.parent.pivotVertex.y += (this.parent.vertices[i].y) / this.parent.vertices.length;
+			};
+
+		}
 	}
 
 
@@ -84,11 +133,6 @@ class InputController {
 			y: this.input.y.value
 		});
 
-		// if list is empty, set the first vertex as pivot
-		// if (this.parent.vertices.length === 0) {
-		// 	this.setPivot(vtx);
-		// }
-		
 		this.parent.vertices.push(vtx);
 		
 		// Add the new vertex information to the pivots list
@@ -100,6 +144,9 @@ class InputController {
 
 		// Apply all transformations to the vertex
 		vtx.update();
+
+		// Apply the center pivot calculations
+		this.defPivotPosition();
 		
 		// draw
 		this.parent.canvas.draw();
@@ -109,19 +156,13 @@ class InputController {
 	switchPivot(evt) {
 		//
 		// get the previous pivot to update later
-		let previousPivot = this.parent.pivotVertex;
+		// let previousPivot = this.parent.pivotVertex;
 
 		// Switch to the new vertex
-		this.parent.pivotVertex = evt.target.selectedOptions[0].vertex;
+		this.parent.pivotVertex = Object.create(evt.target.selectedOptions[0].vertex);
 
-		// Update both vertices
-		if (previousPivot.index != -1) {
-			previousPivot.update();
-		}
-
-		if (this.parent.pivotVertex.index != -1) {
-			this.parent.pivotVertex.update();
-		}
+		this.defPivotPosition();
+		this.parent.canvas.draw();
 	}
 
 
@@ -145,20 +186,22 @@ class InputController {
 
 	init() {
 		//
-		// creates both generic pivots: Mass center + absolute center
-		let mainPivots = new Vertex(this.parent, {
-			index: -1,
+		this.parent.massCenter = new Vertex(this.parent, {
+			index: "mass",
 			displayName: "",
 			x: 0,
 			y: 0
 		});
-
-		this.parent.massCenter = Object.create(mainPivots);
 		this.parent.massCenter.displayName = "Mass center";
 		this.addPivot(this.parent.massCenter);
 		this.setPivot(this.parent.massCenter);
 		
-		this.parent.absoluteCenter = Object.create(mainPivots);
+		this.parent.absoluteCenter = new Vertex(this.parent, {
+			index: "absolute",
+			displayName: "",
+			x: 0,
+			y: 0
+		});
 		this.parent.absoluteCenter.displayName = "Absolute center";
 		this.addPivot(this.parent.absoluteCenter);
 	}

@@ -22,7 +22,7 @@ class Vertex {
         this.displayName = _params.displayName;
         this.elementsToUpdate = [];
 
-        if (_params.index != -1) {
+        if (_params.index != -1 && !isNaN(_params.index)) {
             this.DOMElement = this.createDOMElement();
         }
     }
@@ -70,16 +70,17 @@ class Vertex {
         return container;
     }
 
+    // updates visible values (DOM Element)
     update() {
         //
-        // updates visible values (DOM Element)
         for (let item of this.elementsToUpdate) {
             item.element.innerHTML = item.preValueText + this[item.key];
         }
 
-        // Pivot assignment
+        // Pivot assignment***
+        // get the selected option
         let currentPivot = this.parent.inputController.pivotsList.selectedOptions[0];
-        if (currentPivot) {
+        if (currentPivot && this.DOMElement) {
             if (currentPivot.vertex === this) {
                 this.DOMElement.setAttribute("data-pivot", "");
             } else {
