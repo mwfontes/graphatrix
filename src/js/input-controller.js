@@ -62,7 +62,6 @@ class InputController {
 			return;
 		}
 		let i;
-		console.log("entrou");
 		// Resets the pivot position
 		this.parent.pivotVertex.x = 0;
 		this.parent.pivotVertex.y = 0;

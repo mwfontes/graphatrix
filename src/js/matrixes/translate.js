@@ -1,17 +1,31 @@
 import BasicMatrix from './basic-matrix.js';
+import * as Utils from './utils';
 
 class TranslateMatrix extends BasicMatrix {
     
     constructor(_parent) {
-        
+        //
         super(_parent);
 
+        this.x = undefined;
+        this.y = undefined;
+
+        let matrixStructure = [
+            [1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1]
+        ]
+        
         this.createDOMElement();
+
+        //BINDS
+        this.getValidNumber = this.getValidNumber.bind(this);
+        this.getMatrix = this.getMatrix.bind(this);
     }
 
     createDOMElement() {
         
-        // creates a Bsic Container and returns it
+        // creates a Basic Container and returns it
         let container = this.createBasicDOMElement();
 
         container.title.innerHTML = "Translate";
@@ -23,21 +37,39 @@ class TranslateMatrix extends BasicMatrix {
         let xText = document.createTextNode("X ");
         xContainer.appendChild(xText);
         
-        let xInput = document.createElement("input");
-        xInput.setAttribute("type", "text");
-        xContainer.appendChild(xInput);
-
+        this.x = document.createElement("input");
+        this.x.setAttribute("type", "text");
+        this.x.value = 0;
+        xContainer.appendChild(this.x);
+        this.x.addEventListener("keyup", this.getValidNumber);
+        
         // Y value
         let yContainer = document.createElement("div");
         container.valuesContainer.appendChild(yContainer);
-
+        
         let yText = document.createTextNode("Y ");
         yContainer.appendChild(yText);
         
-        let yInput = document.createElement("input");
-        xInput.setAttribute("type", "text");
-        yContainer.appendChild(yInput);
+        this.y = document.createElement("input");
+        this.y.setAttribute("type", "text");
+        this.y.value = 0;
+        yContainer.appendChild(this.y);
+        this.y.addEventListener("keyup", this.getValidNumber)
         
+    }
+
+    updateMatrix() {
+        this.matrixStructure[0][2] = this.x.value;
+        this.matrixStructure[1][2] = this.y.value;
+    }
+
+    getMatrix() {
+        return matrixStructure;
+    }
+
+    getValidNumber(evt) {
+        //
+        evt.target.value = Utils.validNumber(evt.target.value);
     }
 }
 
