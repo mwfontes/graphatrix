@@ -1,5 +1,6 @@
 import Vertex from './vertex';
 import MatrixOperations from './matrixes/matrix-operations';
+import * as Utils from './matrixes/utils';
 
 class InputController {
 
@@ -103,9 +104,13 @@ class InputController {
 
 
 	addVertex(evt) {
-		// 
+		//
+		// Validates numbers
+		this.input.x.value = Utils.validNumber(this.input.x.value);
+		this.input.y.value = Utils.validNumber(this.input.y.value);
+
 		// If keydown and not ENTER key, then abort
-		if (evt.type == "keydown" && evt.keyCode != 13) {
+		if (evt.type == "keyup" && evt.keyCode != 13) {
 			return;
 		}
 
@@ -120,7 +125,7 @@ class InputController {
 		}
 
 		// if ENTER was pressed and everything is OK, the set focus to the X input again
-		if (evt.type == "keydown") {
+		if (evt.type == "keyup") {
 			this.input.x.focus();
 		}
 
@@ -171,8 +176,8 @@ class InputController {
 		this.input.button.addEventListener("click", this.addVertex);
 
 		// Inser Keyboard Enter
-		this.input.x.addEventListener("keydown", this.addVertex);
-		this.input.y.addEventListener("keydown", this.addVertex);
+		this.input.x.addEventListener("keyup", this.addVertex);
+		this.input.y.addEventListener("keyup", this.addVertex);
 
 		// OPTIONS (close path + show grid)
 		this.options.closePath.addEventListener("click", this.parent.canvas.draw);

@@ -2,8 +2,8 @@ import '../css/global.scss';
 
 import Canvas from './canvas';
 import Vertex from './vertex';
-import TranslateMatrix from './matrixes/translate';
 import InputController from './input-controller';
+import MatrixesController from './matrixes-controller';
 
 class Graphatrix {
 
@@ -43,10 +43,9 @@ class Graphatrix {
         
         this.canvas = new Canvas(this, document.getElementById('canvas'));
         this.inputController = new InputController(this);
+        this.matrixesController = new MatrixesController(this);
 
         this.fakeStart();
-
-        this.matrixes.push(new TranslateMatrix(this));
 
         // Make the fisrt draw. !!!***Should be the last command***!!!
         this.canvas.draw();

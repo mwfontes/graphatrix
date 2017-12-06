@@ -5,13 +5,18 @@ class BasicMatrix {
         this.parent = _parent;
         this.DOMElement = undefined;
         this.elementsToUpdate = [];
-        this.values = [
+        
+        let matrixStructure = [
             [1, 0, 0],
             [0, 1, 0],
             [0, 0, 1]
-        ];
+        ]
 
+        //BINDS
+        this.getValidNumber = this.getValidNumber.bind(this);
+        this.getMatrix = this.getMatrix.bind(this);
         this.erase = this.erase.bind(this);
+
     }
 
     erase() {
@@ -39,6 +44,15 @@ class BasicMatrix {
             "valuesContainer": valuesContainer,
             "title": title
         });
+    }
+
+    getMatrix() {
+        return matrixStructure;
+    }
+
+    getValidNumber(evt) {
+        //
+        evt.target.value = Utils.validNumber(evt.target.value);
     }
 }
 

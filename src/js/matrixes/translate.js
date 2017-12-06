@@ -9,18 +9,8 @@ class TranslateMatrix extends BasicMatrix {
 
         this.x = undefined;
         this.y = undefined;
-
-        let matrixStructure = [
-            [1, 0, 0],
-            [0, 1, 0],
-            [0, 0, 1]
-        ]
         
         this.createDOMElement();
-
-        //BINDS
-        this.getValidNumber = this.getValidNumber.bind(this);
-        this.getMatrix = this.getMatrix.bind(this);
     }
 
     createDOMElement() {
@@ -61,15 +51,6 @@ class TranslateMatrix extends BasicMatrix {
     updateMatrix() {
         this.matrixStructure[0][2] = this.x.value;
         this.matrixStructure[1][2] = this.y.value;
-    }
-
-    getMatrix() {
-        return matrixStructure;
-    }
-
-    getValidNumber(evt) {
-        //
-        evt.target.value = Utils.validNumber(evt.target.value);
     }
 }
 
