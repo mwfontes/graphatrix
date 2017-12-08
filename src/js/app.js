@@ -54,3 +54,4 @@ class Graphatrix {
 
 const graphatrix = new Graphatrix();
 graphatrix.start();
+console.log(graphatrix);

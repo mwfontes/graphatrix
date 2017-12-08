@@ -1,6 +1,7 @@
 import TranslateMatrix from './matrixes/translate';
+import RotateMatrix from './matrixes/rotate';
 import MatrixOperations from './matrixes/matrix-operations';
-import * as Utils from './matrixes/utils';
+import Utils from './matrixes/utils';
 
 class MatrixesController {
 
@@ -25,8 +26,7 @@ class MatrixesController {
 
 
 	addMatrix(evt) {
-        console.log(evt);
-
+        //
         let action = evt.target.getAttribute("id");
 
         switch (action) {
@@ -34,16 +34,16 @@ class MatrixesController {
                 this.parent.matrixes.push(new TranslateMatrix(this.parent));
                 break;
             case "do-rotate":
-                // this.parent.matrixes.push(new RotateMatrix(this));
+                this.parent.matrixes.push(new RotateMatrix(this.parent));
                 break;
             case "do-resize":
-                // this.parent.matrixes.push(new ResizeMatrix(this));
+                // this.parent.matrixes.push(new ResizeMatrix(this.parent));
                 break;
             case "do-reflect":
-                // this.parent.matrixes.push(new ReflectMatrix(this));
+                // this.parent.matrixes.push(new ReflectMatrix(this.parent));
                 break;
             case "do-shear":
-                // this.parent.matrixes.push(new ShearMatrix(this));
+                // this.parent.matrixes.push(new ShearMatrix(this.parent));
                 break;
         }
     }
@@ -52,6 +52,10 @@ class MatrixesController {
 		//
 		// Buttons
 		this.buttons.translate.addEventListener("click", this.addMatrix);
+		this.buttons.rotate.addEventListener("click", this.addMatrix);
+		this.buttons.resize.addEventListener("click", this.addMatrix);
+		this.buttons.reflect.addEventListener("click", this.addMatrix);
+		this.buttons.shear.addEventListener("click", this.addMatrix);
 	}
 }
 

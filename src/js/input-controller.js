@@ -1,6 +1,6 @@
 import Vertex from './vertex';
 import MatrixOperations from './matrixes/matrix-operations';
-import * as Utils from './matrixes/utils';
+import Utils from './matrixes/utils';
 
 class InputController {
 

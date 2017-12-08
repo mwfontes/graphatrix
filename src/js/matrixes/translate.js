@@ -1,5 +1,5 @@
 import BasicMatrix from './basic-matrix.js';
-import * as Utils from './utils';
+import Utils from './utils';
 
 class TranslateMatrix extends BasicMatrix {
     
@@ -9,6 +9,9 @@ class TranslateMatrix extends BasicMatrix {
 
         this.x = undefined;
         this.y = undefined;
+
+        // Binds
+        this.updateMatrix = this.updateMatrix.bind(this);
         
         this.createDOMElement();
     }
@@ -31,7 +34,7 @@ class TranslateMatrix extends BasicMatrix {
         this.x.setAttribute("type", "text");
         this.x.value = 0;
         xContainer.appendChild(this.x);
-        this.x.addEventListener("keyup", this.getValidNumber);
+        this.x.addEventListener("keyup", this.updateMatrix);
         
         // Y value
         let yContainer = document.createElement("div");
@@ -44,13 +47,18 @@ class TranslateMatrix extends BasicMatrix {
         this.y.setAttribute("type", "text");
         this.y.value = 0;
         yContainer.appendChild(this.y);
-        this.y.addEventListener("keyup", this.getValidNumber)
+        this.y.addEventListener("keyup", this.updateMatrix)
         
     }
 
     updateMatrix() {
-        this.matrixStructure[0][2] = this.x.value;
-        this.matrixStructure[1][2] = this.y.value;
+        // First, validates input values
+        this.x.value = Utils.validNumber(this.x.value);
+        this.y.value = Utils.validNumber(this.y.value);
+        
+        // Apply values
+        this.matrixStructure[0][2] = parseFloat(this.x.value || 0);
+        this.matrixStructure[1][2] = parseFloat(this.y.value || 0);
     }
 }
 

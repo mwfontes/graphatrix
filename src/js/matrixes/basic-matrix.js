@@ -1,3 +1,5 @@
+import Utils from './utils';
+
 class BasicMatrix {
     
     constructor(_parent) {
@@ -6,17 +8,15 @@ class BasicMatrix {
         this.DOMElement = undefined;
         this.elementsToUpdate = [];
         
-        let matrixStructure = [
+        this.matrixStructure = [
             [1, 0, 0],
             [0, 1, 0],
             [0, 0, 1]
         ]
 
         //BINDS
-        this.getValidNumber = this.getValidNumber.bind(this);
         this.getMatrix = this.getMatrix.bind(this);
         this.erase = this.erase.bind(this);
-
     }
 
     erase() {
@@ -50,10 +50,7 @@ class BasicMatrix {
         return matrixStructure;
     }
 
-    getValidNumber(evt) {
-        //
-        evt.target.value = Utils.validNumber(evt.target.value);
-    }
+    updateMatrix() {}
 }
 
 export default BasicMatrix;

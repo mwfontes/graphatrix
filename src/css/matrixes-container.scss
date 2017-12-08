@@ -25,7 +25,6 @@
 		height: 110px;
 		overflow-x: auto;
 		overflow-y: hidden;
-		vertical-align: text-top;
 		
 		.matrix-input {
 			position: relative;
@@ -39,6 +38,7 @@
 			padding: 10px;
 			margin-right: 5px;
 			display: inline-block;
+			vertical-align: text-top;
 			text-align: center;
 
 			h5 {
