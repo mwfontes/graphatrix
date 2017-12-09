@@ -23,6 +23,11 @@ class InputController {
 			showNumbers: document.getElementById("show-numbers")
 		}
 
+		this.originCoords = {
+			x: document.getElementById("origin-x"),
+			y: document.getElementById("origin-y"),
+		}
+
 		// Functions Binds
 		this.addVertex = this.addVertex.bind(this);
 		this.switchPivot = this.switchPivot.bind(this);
@@ -54,6 +59,10 @@ class InputController {
 	setPivot(_vtx) {
 		//
 		this.parent.pivotVertex = _vtx;
+
+		//updates the Origin coordinates
+		this.originCoords.x.value = this.parent.pivotVertex.x;
+		this.originCoords.y.value = this.parent.pivotVertex.y;
 	}
 
 	defPivotPosition() {
@@ -63,12 +72,14 @@ class InputController {
 			return;
 		}
 		let i;
-		// Resets the pivot position
-		this.parent.pivotVertex.x = 0;
-		this.parent.pivotVertex.y = 0;
+		
 
 		if (this.pivotsList.value == "absolute") {
 			//
+			// Reset
+			this.parent.absoluteCenter.x = 0;
+			this.parent.absoluteCenter.y = 0;
+
 			let minX = this.parent.vertices[0].x;
 			let maxX = this.parent.vertices[0].x;
 			let minY = this.parent.vertices[0].y;
@@ -88,16 +99,23 @@ class InputController {
 				}
 			}
 	
-			this.parent.pivotVertex.x = (maxX + minX) / 2;
-			this.parent.pivotVertex.y = (maxY + minY) / 2;
+			this.parent.absoluteCenter.x = (maxX + minX) / 2;
+			this.parent.absoluteCenter.y = (maxY + minY) / 2;
+
+			this.setPivot(this.parent.absoluteCenter);
 
 		} else if (this.pivotsList.value == "mass") {
 			//
+			// Reset
+			this.parent.massCenter.x = 0;
+			this.parent.massCenter.y = 0;
 			// sums it all and divide by the number of vertices
 			for (i = 0; i < this.parent.vertices.length; i++) {
-				this.parent.pivotVertex.x += (this.parent.vertices[i].x) / this.parent.vertices.length;
-				this.parent.pivotVertex.y += (this.parent.vertices[i].y) / this.parent.vertices.length;
+				this.parent.massCenter.x += (this.parent.vertices[i].x) / this.parent.vertices.length;
+				this.parent.massCenter.y += (this.parent.vertices[i].y) / this.parent.vertices.length;
 			};
+
+			this.setPivot(this.parent.massCenter);
 
 		}
 	}

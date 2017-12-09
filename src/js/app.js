@@ -4,6 +4,7 @@ import Canvas from './canvas';
 import Vertex from './vertex';
 import InputController from './input-controller';
 import MatrixesController from './matrixes-controller';
+import MatrixOperations from './matrixes/matrix-operations';
 
 class Graphatrix {
 
@@ -39,6 +40,28 @@ class Graphatrix {
         addFake(1, 3);
     }
     
+    applyTransforms() {
+        //
+        let i;
+
+        // sets the first matrix to multiply as the last one in the matrixes array
+        let resultMatrix = this.matrixes[this.matrixes.length - 1].matrixStructure;
+
+        for (i = this.matrixes.length -2; i > 0; i--) {
+            resultMatrix = (this.matrixes[i].matrixStructure, resultMatrix);
+        }
+
+        this.matrixesController.transformationMatrix = resultMatrix;
+
+        console.log(resultMatrix);
+
+        // automatically apply transformations to vertices
+        MatrixOperations.vertexApplyTransformations(this.vertices, this.matrixesController.transformationMatrix);
+
+        // Redraw
+        this.canvas.draw();
+    }
+
     start() {
         
         this.canvas = new Canvas(this, document.getElementById('canvas'));

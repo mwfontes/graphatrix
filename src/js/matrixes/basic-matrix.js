@@ -1,4 +1,5 @@
 import Utils from './utils';
+import MatrixOperations from './matrix-operations';
 
 class BasicMatrix {
     
@@ -15,7 +16,6 @@ class BasicMatrix {
         ]
 
         //BINDS
-        this.getMatrix = this.getMatrix.bind(this);
         this.erase = this.erase.bind(this);
     }
 
@@ -26,7 +26,15 @@ class BasicMatrix {
     createBasicDOMElement() {
         this.DOMElement = document.createElement("div");
         this.DOMElement.className = "matrix-input";
-        document.getElementById("matrixes-elements-holder").appendChild(this.DOMElement);
+
+        // insert in the DOM. If no matrixes are present, just append.
+        // if there are matrixes present, use insertBefore of 0 (should come before the first one)
+        let holder = document.getElementById("matrixes-elements-holder");
+        if (this.parent.matrixes.length == 0) {
+            holder.appendChild(this.DOMElement);
+        } else {
+            holder.insertBefore(this.DOMElement, this.parent.matrixes[0].DOMElement);
+        }
 
         let title = document.createElement("h5");
         this.DOMElement.appendChild(title);
@@ -44,10 +52,6 @@ class BasicMatrix {
             "valuesContainer": valuesContainer,
             "title": title
         });
-    }
-
-    getMatrix() {
-        return matrixStructure;
     }
 
     updateMatrix() {}

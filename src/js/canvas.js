@@ -273,7 +273,6 @@ class Canvas {
         }
 
         // // DESENHA FORMA ***** MODIFICADA *****
-        // DESENHA FORMA BASE - ***** NAO MODIFICADA *****
         if (this.parent.vertices.length > 1) {
 
             this.canvas.beginPath();

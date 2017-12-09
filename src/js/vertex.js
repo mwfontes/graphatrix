@@ -25,6 +25,9 @@ class Vertex {
         if (_params.index != -1 && !isNaN(_params.index)) {
             this.DOMElement = this.createDOMElement();
         }
+
+        // BINDS
+        this.update = this.update.bind(this);
     }
 
     createDOMElement() {

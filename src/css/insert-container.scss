@@ -75,6 +75,10 @@
 			border: none;
 			outline: none;
 			background: transparent;
+
+			option {
+				color: $color-dark;
+			}
 		}
 		
 		.select-wrapper {
@@ -167,6 +171,7 @@
 				box-sizing: border-box;
 				border-radius: 2px;
 				transition: all 0.25s ease;
+				overflow: hidden;
 			}
 
 			.original {

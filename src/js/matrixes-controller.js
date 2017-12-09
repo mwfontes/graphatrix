@@ -18,6 +18,12 @@ class MatrixesController {
 			shear: document.getElementById("do-shear")
 		}
 
+		this.transformationMatrix = [
+			[1, 0, 0],
+			[0, 1, 0],
+			[0, 0, 1]
+		];
+
 		// Functions Binds
 		this.addMatrix = this.addMatrix.bind(this);
 
@@ -31,19 +37,19 @@ class MatrixesController {
 
         switch (action) {
             case "do-translate":
-                this.parent.matrixes.push(new TranslateMatrix(this.parent));
+                this.parent.matrixes.unshift(new TranslateMatrix(this.parent));
                 break;
             case "do-rotate":
-                this.parent.matrixes.push(new RotateMatrix(this.parent));
+                this.parent.matrixes.unshift(new RotateMatrix(this.parent));
                 break;
             case "do-resize":
-                // this.parent.matrixes.push(new ResizeMatrix(this.parent));
+                // this.parent.matrixes.unshift(new ResizeMatrix(this.parent));
                 break;
             case "do-reflect":
-                // this.parent.matrixes.push(new ReflectMatrix(this.parent));
+                // this.parent.matrixes.unshift(new ReflectMatrix(this.parent));
                 break;
             case "do-shear":
-                // this.parent.matrixes.push(new ShearMatrix(this.parent));
+                // this.parent.matrixes.unshift(new ShearMatrix(this.parent));
                 break;
         }
     }

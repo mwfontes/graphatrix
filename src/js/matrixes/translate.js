@@ -1,5 +1,6 @@
 import BasicMatrix from './basic-matrix.js';
 import Utils from './utils';
+import MatrixOperations from './matrix-operations';
 
 class TranslateMatrix extends BasicMatrix {
     
@@ -59,6 +60,8 @@ class TranslateMatrix extends BasicMatrix {
         // Apply values
         this.matrixStructure[0][2] = parseFloat(this.x.value || 0);
         this.matrixStructure[1][2] = parseFloat(this.y.value || 0);
+
+        this.parent.applyTransforms();
     }
 }
 

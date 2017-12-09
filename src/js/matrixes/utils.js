@@ -7,7 +7,7 @@ class Utils {
     // Returns only valid number related characters
     static validNumber(_value) {
         //
-        let validChars = ("1234567890.").split("");
+        let validChars = ("1234567890.-").split("");
         let enteredChars = _value.split("") || [];
         let dots = 0;
 
