@@ -47,13 +47,13 @@ class Graphatrix {
         // sets the first matrix to multiply as the last one in the matrixes array
         let resultMatrix = this.matrixes[this.matrixes.length - 1].matrixStructure;
 
-        for (i = this.matrixes.length -2; i > 0; i--) {
-            resultMatrix = (this.matrixes[i].matrixStructure, resultMatrix);
+        for (i = this.matrixes.length - 2; i >= 0; i--) {
+            resultMatrix = MatrixOperations.multiplyMatrixes(this.matrixes[i].matrixStructure, resultMatrix);
         }
 
         this.matrixesController.transformationMatrix = resultMatrix;
 
-        console.log(resultMatrix);
+        // console.log(resultMatrix);
 
         // automatically apply transformations to vertices
         MatrixOperations.vertexApplyTransformations(this.vertices, this.matrixesController.transformationMatrix);
