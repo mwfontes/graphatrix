@@ -8,23 +8,28 @@ class MatrixOperations {
         let resultMatrix = [[],[],[]];
         let stringProof = [[],[],[]];
         let i, j, k;
+        let columns = Math.min(_m1[0].length, _m2[0].length);
 
 
-        // O ERRO ESTÁ AQUI: A MATRIX FINAL NO CALCULO DOS VERTICES DEVE SER UMA 1X3 E NAO UMA 3X3 NA SAÍDA!
+        // If there is only one matrix, then return the only one and abort
+        if (!_m2) {
+            return _m1;
+        }
 
         for (i = 0; i < _m1.length; i++) { // line
-            for (j = 0; j < _m1[0].length; j++) { // column _m1
+            for (j = 0; j < columns; j++) { // column _m1
                 resultMatrix[i][j] = _m1[i][0]*_m2[0][j];
                 stringProof[i][j] = i + "," + 0 + "*" + 0 + "," + j;
-                for (k = 1; k < _m2[0].length; k++) { // column _m2
-                    console.log(_m2[k]);
-                    resultMatrix[i][j] = resultMatrix[i][j] + _m1[i][k]*_m2[k][j];
-                    stringProof[i][j] = stringProof[i][j] + "+" + i + "," + k + "*" + k + "," + j;
+                for (k = 1; k < _m2.length; k++) { // column _m2
+                    resultMatrix[i][j] += _m1[i][k]*_m2[k][j];
+                    stringProof[i][j] += "+" + i + "," + k + "*" + k + "," + j;
                 }
             }
         }
 
-        console.log(resultMatrix);
+        // if (_m2[0].length === 3) {
+            console.log(stringProof);
+        // }
         return resultMatrix;
         
     }
