@@ -250,7 +250,7 @@ class Canvas {
 
             this.canvas.beginPath();
             this.canvas.lineJoin = "bevel";
-            this.canvas.strokeStyle = "#9071a5";
+            this.canvas.strokeStyle = "#c2bac7";
             this.canvas.lineWidth = 2;
 
             this.canvas.moveTo(

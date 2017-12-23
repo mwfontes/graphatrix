@@ -2,7 +2,7 @@ import BasicMatrix from './basic-matrix.js';
 import Utils from './utils';
 import MatrixOperations from './matrix-operations';
 
-class TranslateMatrix extends BasicMatrix {
+class ScaleMatrix extends BasicMatrix {
     
     constructor(_parent) {
         //
@@ -22,7 +22,7 @@ class TranslateMatrix extends BasicMatrix {
         // creates a Basic Container and returns it
         let container = this.createBasicDOMElement();
 
-        container.title.innerHTML = "Translate";
+        container.title.innerHTML = "Scale";
 
         // X value
         let xContainer = document.createElement("div");
@@ -59,11 +59,11 @@ class TranslateMatrix extends BasicMatrix {
         this.y.value = Utils.validNumber(this.y.value);
         
         // Apply values
-        this.matrixStructure[0][2] = parseFloat(this.x.value || 0);
-        this.matrixStructure[1][2] = parseFloat(this.y.value || 0);
+        this.matrixStructure[0][0] = parseFloat(this.x.value || 0);
+        this.matrixStructure[1][1] = parseFloat(this.y.value || 0);
 
         this.parent.applyTransforms();
     }
 }
 
-export default TranslateMatrix;
+export default ScaleMatrix;

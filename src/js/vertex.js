@@ -77,7 +77,11 @@ class Vertex {
     update() {
         //
         for (let item of this.elementsToUpdate) {
-            item.element.innerHTML = item.preValueText + this[item.key];
+            if (item.key == "index") {
+                item.element.innerHTML = item.preValueText + this[item.key];
+            } else {
+                item.element.innerHTML = item.preValueText + this[item.key].toFixed(2);
+            }
         }
 
         // Pivot assignment***

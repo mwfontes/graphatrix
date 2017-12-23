@@ -20,7 +20,13 @@ class BasicMatrix {
     }
 
     erase() {
-        console.log("Should erase this matrix.");
+        
+        // remove matrix from the DOM
+        this.DOMElement.parentNode.removeChild(this.DOMElement);
+
+        // remove the matrix from the app's matrixes list
+        let idx = this.parent.matrixes.indexOf(this);
+        this.parent.matrixes.splice(idx, 1);
     }
 
     createBasicDOMElement() {

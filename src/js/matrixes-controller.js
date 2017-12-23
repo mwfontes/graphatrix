@@ -1,5 +1,6 @@
 import TranslateMatrix from './matrixes/translate';
 import RotateMatrix from './matrixes/rotate';
+import ScaleMatrix from './matrixes/scale';
 import MatrixOperations from './matrixes/matrix-operations';
 import Utils from './matrixes/utils';
 
@@ -13,7 +14,7 @@ class MatrixesController {
 		this.buttons = {
 			translate: document.getElementById("do-translate"),
 			rotate: document.getElementById("do-rotate"),
-			resize: document.getElementById("do-resize"),
+			scale: document.getElementById("do-scale"),
 			reflect: document.getElementById("do-reflect"),
 			shear: document.getElementById("do-shear")
 		}
@@ -42,8 +43,8 @@ class MatrixesController {
             case "do-rotate":
                 this.parent.matrixes.unshift(new RotateMatrix(this.parent));
                 break;
-            case "do-resize":
-                // this.parent.matrixes.unshift(new ResizeMatrix(this.parent));
+            case "do-scale":
+                this.parent.matrixes.unshift(new ScaleMatrix(this.parent));
                 break;
             case "do-reflect":
                 // this.parent.matrixes.unshift(new ReflectMatrix(this.parent));
@@ -59,7 +60,7 @@ class MatrixesController {
 		// Buttons
 		this.buttons.translate.addEventListener("click", this.addMatrix);
 		this.buttons.rotate.addEventListener("click", this.addMatrix);
-		this.buttons.resize.addEventListener("click", this.addMatrix);
+		this.buttons.scale.addEventListener("click", this.addMatrix);
 		this.buttons.reflect.addEventListener("click", this.addMatrix);
 		this.buttons.shear.addEventListener("click", this.addMatrix);
 	}

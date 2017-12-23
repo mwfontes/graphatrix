@@ -50,7 +50,6 @@ class InputController {
 	updatePivotsIndexes() {
 		//
 		for (let pivot of this.pivotsList.options) {
-			console.log(pivot);
 			pivot.innerHTML = pivot.vertex.index;
 		}
 	}
@@ -61,8 +60,8 @@ class InputController {
 		this.parent.pivotVertex = _vtx;
 
 		//updates the Origin coordinates
-		this.originCoords.x.value = this.parent.pivotVertex.x;
-		this.originCoords.y.value = this.parent.pivotVertex.y;
+		this.originCoords.x.value = this.parent.pivotVertex.x.toFixed(2);
+		this.originCoords.y.value = this.parent.pivotVertex.y.toFixed(2);
 	}
 
 	defPivotPosition() {
