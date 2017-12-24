@@ -45,9 +45,17 @@ class Graphatrix {
         let i;
 
         // sets the first matrix to multiply as the last one in the matrixes array
-        let resultMatrix = this.matrixes[this.matrixes.length - 1].matrixStructure;
+        let resultMatrix = [
+            [1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1]
+        ];
 
-        for (i = this.matrixes.length - 2; i >= 0; i--) {
+        // if (this.matrixes.length > 0) {
+        //     resultMatrix = this.matrixes[this.matrixes.length - 1].matrixStructure;
+        // }
+
+        for (i = this.matrixes.length - 1; i >= 0; i--) {
             resultMatrix = MatrixOperations.multiplyMatrixes(this.matrixes[i].matrixStructure, resultMatrix);
         }
 

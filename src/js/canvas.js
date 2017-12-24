@@ -17,102 +17,6 @@ class Canvas {
         this.init();
     }
 
-    // sets the Canvas DOM element current size for drawing calcs
-    defSize() {
-        let width = window.innerWidth - this.margins[0];
-        let height = window.innerHeight - this.margins[1];
-        this.canvasDOM.setAttribute("width", width);
-        this.canvasDOM.setAttribute("height", height);
-        this.size = [width, height];
-    }
-
-    // sets the relative center from where to draw
-    // :: the plane's 0,0
-    resetCenter() {
-        this.center = [
-            Math.floor((this.size[0] / 2) - this.dragDelta[0]) + 0.5,
-            Math.floor((this.size[1] / 2) - this.dragDelta[1]) + 0.5
-        ];
-    }
-
-    defCenter() {
-
-        let currentCenter = [
-            this.center[0],
-            this.center[1]
-        ]
-
-        this.center = [
-            Math.floor(currentCenter[0] - this.dragDelta[0]) + 0.5,
-            Math.floor(currentCenter[1] - this.dragDelta[1]) + 0.5
-        ];
-    }
-
-    // Increases/Decreases the scaling factor when the user scrolls over the canvas
-    setScale(evt) {
-        let delta = Math.max(-1, Math.min(1, evt.wheelDelta));
-        this.scale = Math.max(8, Math.min(100, this.scale + (delta * 5)));
-
-        this.draw();
-    }
-
-    grid() {
-        // if (document.getElementById("show-grid").checked) {
-
-        this.canvas.strokeStyle = "#f0f0f0";
-        this.canvas.lineWidth = 1;
-
-        let i;
-        let scl = Math.floor(this.scale);
-
-        // -X
-        for (
-            i = this.center[0] - scl; i > 0; i -= scl
-        ) {
-            this.canvas.beginPath();
-            this.canvas.moveTo(i, 0);
-            this.canvas.lineTo(i, this.size[1]);
-            this.canvas.closePath();
-            this.canvas.stroke();
-        }
-
-        // +X
-        for (i = this.center[0] + scl; i < this.size[0]; i += scl) {
-            this.canvas.beginPath();
-            this.canvas.moveTo(i, 0);
-            this.canvas.lineTo(i, this.size[1]);
-            this.canvas.closePath();
-            this.canvas.stroke();
-        }
-
-        // +Y
-        for (i = this.center[1] - scl; i > 0; i -= scl) {
-            this.canvas.beginPath();
-            this.canvas.moveTo(0, i);
-            this.canvas.lineTo(this.size[0], i);
-            this.canvas.closePath();
-            this.canvas.stroke();
-        }
-
-        // -Y
-        for (i = this.center[1] + scl; i < this.size[1]; i += scl) {
-            this.canvas.beginPath();
-            this.canvas.moveTo(0, i);
-            this.canvas.lineTo(this.size[0], i);
-            this.canvas.closePath();
-            this.canvas.stroke();
-        }
-        // }
-    }
-
-    // returns the right text position
-    getModTextPosition(_min, _max, _index) {
-        if (this.scale < 20 && _index % 2 == 0) { // if less than 20px and NOT ODD
-            return _min;
-        } else {
-            return _max;
-        }
-    }
 
     cartesianPlane() {
 
@@ -204,31 +108,6 @@ class Canvas {
 
     }
 
-    pivot() {
-
-        let drawingCenter = [
-            this.center[0] + Math.round(this.parent.pivotVertex.x * this.scale),
-            this.center[1] - Math.round(this.parent.pivotVertex.y * this.scale)
-        ];
-
-        this.canvas.beginPath();
-        this.canvas.arc(drawingCenter[0], drawingCenter[1], 4, 0, 2 * Math.PI);
-
-        // horizontal line
-        this.canvas.moveTo(drawingCenter[0] - 6, drawingCenter[1]);
-        this.canvas.lineTo(drawingCenter[0] + 6, drawingCenter[1]);
-
-        // vertical line
-        this.canvas.moveTo(drawingCenter[0], drawingCenter[1] - 6);
-        this.canvas.lineTo(drawingCenter[0], drawingCenter[1] + 6);
-
-        this.canvas.strokeStyle = "#573f84";
-        this.canvas.lineWidth = 1;
-        this.canvas.stroke();
-        this.canvas.closePath();
-    }
-
-
     draw() {
         //
         // Clears the canvas
@@ -251,7 +130,7 @@ class Canvas {
             this.canvas.beginPath();
             this.canvas.lineJoin = "bevel";
             this.canvas.strokeStyle = "#c2bac7";
-            this.canvas.lineWidth = 2;
+            this.canvas.lineWidth = 1;
 
             this.canvas.moveTo(
                 this.center[0] + Math.round(this.parent.vertices[0].x * this.scale),
@@ -270,6 +149,21 @@ class Canvas {
             }
 
             this.canvas.stroke();
+
+            // Draw the unmodified vertices
+            for (i = 0; i < this.parent.vertices.length; i++) {
+                this.canvas.beginPath();
+                this.canvas.arc(
+                    this.center[0] + Math.round(this.parent.vertices[i].x * this.scale),
+                    this.center[1] + Math.round(this.parent.vertices[i].y * -this.scale),
+                    2, 0, 2* Math.PI
+                );
+                this.canvas.fillStyle = "#fff";
+                this.canvas.lineWidth = 1;
+                this.canvas.fill();
+                this.canvas.stroke();
+                this.canvas.closePath();
+            }
         }
 
         // // DESENHA FORMA ***** MODIFICADA *****
@@ -280,11 +174,13 @@ class Canvas {
             this.canvas.strokeStyle = "#573f84";
             this.canvas.lineWidth = 2;
 
+            // Begin the line
             this.canvas.moveTo(
                 this.center[0] + Math.round(this.parent.vertices[0].modifiedX * this.scale),
                 this.center[1] + Math.round(this.parent.vertices[0].modifiedY * -this.scale)
             );
 
+            // Draw the other lines
             for (i = 1; i < this.parent.vertices.length; i++) {
                 this.canvas.lineTo(
                     this.center[0] + Math.round(this.parent.vertices[i].modifiedX * this.scale),
@@ -297,6 +193,21 @@ class Canvas {
             }
 
             this.canvas.stroke();
+
+            // Draw the modified vertices
+            for (i = 0; i < this.parent.vertices.length; i++) {
+                this.canvas.beginPath();
+                this.canvas.arc(
+                    this.center[0] + Math.round(this.parent.vertices[i].modifiedX * this.scale),
+                    this.center[1] + Math.round(this.parent.vertices[i].modifiedY * -this.scale),
+                    2, 0, 2* Math.PI
+                );
+                this.canvas.fillStyle = "#fff";
+                this.canvas.lineWidth = 1;
+                this.canvas.fill();
+                this.canvas.stroke();
+                this.canvas.closePath();
+            }
         }
 
 
@@ -336,6 +247,130 @@ class Canvas {
         window.addEventListener("mousemove", dragMove);
         window.addEventListener("mouseup", stopDrag);
     }
+
+
+    // sets the Canvas DOM element current size for drawing calcs
+    defSize() {
+        let width = window.innerWidth - this.margins[0];
+        let height = window.innerHeight - this.margins[1];
+        this.canvasDOM.setAttribute("width", width);
+        this.canvasDOM.setAttribute("height", height);
+        this.size = [width, height];
+    }
+
+
+    defCenter() {
+
+        let currentCenter = [
+            this.center[0],
+            this.center[1]
+        ]
+
+        this.center = [
+            Math.floor(currentCenter[0] - this.dragDelta[0]) + 0.5,
+            Math.floor(currentCenter[1] - this.dragDelta[1]) + 0.5
+        ];
+    }
+
+    // Increases/Decreases the scaling factor when the user scrolls over the canvas
+    setScale(evt) {
+        let delta = Math.max(-1, Math.min(1, evt.wheelDelta));
+        this.scale = Math.max(8, Math.min(100, this.scale + (delta * 5)));
+
+        this.draw();
+    }
+
+    grid() {
+        // if (document.getElementById("show-grid").checked) {
+
+        this.canvas.strokeStyle = "#f0f0f0";
+        this.canvas.lineWidth = 1;
+
+        let i;
+        let scl = Math.floor(this.scale);
+
+        // -X
+        for (
+            i = this.center[0] - scl; i > 0; i -= scl
+        ) {
+            this.canvas.beginPath();
+            this.canvas.moveTo(i, 0);
+            this.canvas.lineTo(i, this.size[1]);
+            this.canvas.closePath();
+            this.canvas.stroke();
+        }
+
+        // +X
+        for (i = this.center[0] + scl; i < this.size[0]; i += scl) {
+            this.canvas.beginPath();
+            this.canvas.moveTo(i, 0);
+            this.canvas.lineTo(i, this.size[1]);
+            this.canvas.closePath();
+            this.canvas.stroke();
+        }
+
+        // +Y
+        for (i = this.center[1] - scl; i > 0; i -= scl) {
+            this.canvas.beginPath();
+            this.canvas.moveTo(0, i);
+            this.canvas.lineTo(this.size[0], i);
+            this.canvas.closePath();
+            this.canvas.stroke();
+        }
+
+        // -Y
+        for (i = this.center[1] + scl; i < this.size[1]; i += scl) {
+            this.canvas.beginPath();
+            this.canvas.moveTo(0, i);
+            this.canvas.lineTo(this.size[0], i);
+            this.canvas.closePath();
+            this.canvas.stroke();
+        }
+        // }
+    }
+
+    // returns the right text position
+    getModTextPosition(_min, _max, _index) {
+        if (this.scale < 20 && _index % 2 == 0) { // if less than 20px and NOT ODD
+            return _min;
+        } else {
+            return _max;
+        }
+    }
+
+    pivot() {
+
+        let drawingCenter = [
+            this.center[0] + Math.round(this.parent.pivotVertex.x * this.scale),
+            this.center[1] - Math.round(this.parent.pivotVertex.y * this.scale)
+        ];
+
+        this.canvas.beginPath();
+        this.canvas.arc(drawingCenter[0], drawingCenter[1], 4, 0, 2 * Math.PI);
+
+        // horizontal line
+        this.canvas.moveTo(drawingCenter[0] - 6, drawingCenter[1]);
+        this.canvas.lineTo(drawingCenter[0] + 6, drawingCenter[1]);
+
+        // vertical line
+        this.canvas.moveTo(drawingCenter[0], drawingCenter[1] - 6);
+        this.canvas.lineTo(drawingCenter[0], drawingCenter[1] + 6);
+
+        this.canvas.strokeStyle = "#573f84";
+        this.canvas.lineWidth = 1;
+        this.canvas.stroke();
+        this.canvas.closePath();
+    }
+
+    // sets the relative center from where to draw
+    // :: the plane's 0,0
+    resetCenter() {
+        this.center = [
+            Math.floor((this.size[0] / 2) - this.dragDelta[0]) + 0.5,
+            Math.floor((this.size[1] / 2) - this.dragDelta[1]) + 0.5
+        ];
+    }
+
 
     resize() {
         //

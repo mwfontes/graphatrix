@@ -39,9 +39,10 @@ class BasicMatrix {
         this.parent.matrixes.splice(idx, 1);
 
         // Apply transforms - Update transformation matrix
-        if (this.parent.matrixes.length > 0) {
-            this.parent.applyTransforms();
-        }
+        this.parent.applyTransforms();
+
+        // console.log(this.parent.canvas.draw);
+        // this.parent.canvas.draw();
     }
 
     createBasicDOMElement() {
