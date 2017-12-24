@@ -1,6 +1,8 @@
 import TranslateMatrix from './matrixes/translate';
 import RotateMatrix from './matrixes/rotate';
 import ScaleMatrix from './matrixes/scale';
+import ShearMatrix from './matrixes/shear';
+import ReflectMatrix from './matrixes/reflect';
 import MatrixOperations from './matrixes/matrix-operations';
 import Utils from './matrixes/utils';
 
@@ -47,10 +49,10 @@ class MatrixesController {
                 this.parent.matrixes.unshift(new ScaleMatrix(this.parent));
                 break;
             case "do-reflect":
-                // this.parent.matrixes.unshift(new ReflectMatrix(this.parent));
+                this.parent.matrixes.unshift(new ReflectMatrix(this.parent));
                 break;
             case "do-shear":
-                // this.parent.matrixes.unshift(new ShearMatrix(this.parent));
+                this.parent.matrixes.unshift(new ShearMatrix(this.parent));
                 break;
         }
     }

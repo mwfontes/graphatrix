@@ -2,7 +2,7 @@ import BasicMatrix from './basic-matrix.js';
 import Utils from './utils';
 import MatrixOperations from './matrix-operations';
 
-class ScaleMatrix extends BasicMatrix {
+class ShearMatrix extends BasicMatrix {
     
     constructor(_parent) {
         //
@@ -22,7 +22,7 @@ class ScaleMatrix extends BasicMatrix {
         // creates a Basic Container and returns it
         let container = this.createBasicDOMElement();
 
-        container.title.innerHTML = "Scale";
+        container.title.innerHTML = "Shear";
 
         // X value
         let xContainer = document.createElement("div");
@@ -33,7 +33,7 @@ class ScaleMatrix extends BasicMatrix {
         
         this.x = document.createElement("input");
         this.x.setAttribute("type", "text");
-        this.x.value = 1;
+        this.x.value = 0;
         xContainer.appendChild(this.x);
         this.x.addEventListener("keyup", this.updateMatrix);
         
@@ -46,7 +46,7 @@ class ScaleMatrix extends BasicMatrix {
         
         this.y = document.createElement("input");
         this.y.setAttribute("type", "text");
-        this.y.value = 1;
+        this.y.value = 0;
         yContainer.appendChild(this.y);
         this.y.addEventListener("keyup", this.updateMatrix)
         
@@ -59,11 +59,11 @@ class ScaleMatrix extends BasicMatrix {
         this.y.value = Utils.validNumber(this.y.value);
         
         // Apply values
-        this.matrixStructure[0][0] = parseFloat(this.x.value || 0);
-        this.matrixStructure[1][1] = parseFloat(this.y.value || 0);
+        this.matrixStructure[0][1] = parseFloat(this.x.value || 0);
+        this.matrixStructure[1][0] = parseFloat(this.y.value || 0);
 
         this.parent.applyTransforms();
     }
 }
 
-export default ScaleMatrix;
+export default ShearMatrix;

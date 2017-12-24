@@ -17,6 +17,16 @@ class BasicMatrix {
 
         //BINDS
         this.erase = this.erase.bind(this);
+        this.drag = this.drag.bind(this);
+    }
+
+    drag(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        console.log(evt);
+        if (evt.button == 2) {
+            evt.currentTarget
+        }
     }
 
     erase() {
@@ -27,11 +37,17 @@ class BasicMatrix {
         // remove the matrix from the app's matrixes list
         let idx = this.parent.matrixes.indexOf(this);
         this.parent.matrixes.splice(idx, 1);
+
+        // Apply transforms - Update transformation matrix
+        if (this.parent.matrixes.length > 0) {
+            this.parent.applyTransforms();
+        }
     }
 
     createBasicDOMElement() {
         this.DOMElement = document.createElement("div");
         this.DOMElement.className = "matrix-input";
+        this.DOMElement.addEventListener("contextmenu", this.drag, true)
 
         // insert in the DOM. If no matrixes are present, just append.
         // if there are matrixes present, use insertBefore of 0 (should come before the first one)
