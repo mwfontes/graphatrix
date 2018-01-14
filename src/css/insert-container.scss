@@ -5,7 +5,7 @@
 	width: 160px;
 	height: calc(100% - 20px);
 	background-color: $color-gray-light;
-	padding: 10px;
+	padding: 140px 10px 10px 10px;
 	color: #fff;
 	border-right: 1px solid $color-medium-light;
 
@@ -14,13 +14,29 @@
 	}
 	
 	#logo {
+		position: absolute;
 		width: 100%;
-		height: 76px;
-		margin: 1px 0 12px 0;
-		background-image: url('../images/logo.png');
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: center center;
+		height: 131px;
+		box-sizing: border-box;
+		left: 0;
+		top: 0;
+		background: linear-gradient(-45deg, $color-medium, $color-light);
+		padding: 10px 15px;
+		font: 0/0 a;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			vertical-align: middle;
+			height: 100%;
+		}
+
+		img {
+			display: inline-block;
+			vertical-align: middle;
+			width: 100%;
+			height: auto;
+		}
 	}
 
 	.inner-container {
@@ -45,10 +61,33 @@
 			@extend .input-default;
 		}
 
-		button,
-		select {
+		button {
 			@extend .clickable-element;
 			margin-top: 5px;
+		}
+
+		select {
+			width: 100%;
+			color: #fff;
+			line-height: $elements-height;
+			margin: 0px;
+			font-size: 0.8rem;
+			border: none;
+			outline: none;
+			background: transparent;
+
+			option {
+				// color: $color-dark;
+				color: #fff;
+				background-color: $color-light;
+			}
+		}
+		
+		.select-wrapper {
+			@extend .clickable-element;
+			display: inline-block;
+			overflow: hidden;
+			margin: 5px auto 0 auto;
 		}
 
 		.checkbox-true-label {
@@ -84,20 +123,62 @@
 			}
 		}
 
-		.points:first-child {
+		.vertex:first-child {
 			margin-top: 5px;
 		}
 
-		.points {
+		.vertex {
 			@extend .clickable-element;
+			background-color: transparent;
 			position: relative;
-			font-weight: 700;
-			font-size: 0.7rem;
 			margin: 1px 0;
-			cursor: ns-resize;
-			// display: flex;
-			// justify-content: space-evenly;
+			cursor: default;
 			transition: all 0.25s ease;
+			color: $color-light;
+
+			&:hover {
+				background-color: inherit;
+
+				.value {
+					background-color: $color-medium;
+					color: $color-gray-light;
+					display: none !important;
+				}
+
+				.original {
+					display: inline-block !important;
+				}
+			}
+			
+			.index {
+				position: relative;
+				font-weight: 700;
+				font-size: 0.7rem;
+				display: inline-block;
+				width: 20%;
+				text-align: center;
+				border: 1px solid $color-light;
+				box-sizing: border-box;
+				border-radius: 2px;
+			}
+			
+			.value {
+				font-weight: 700;
+				font-size: 0.7rem;
+				display: inline-block;
+				width: 40%;
+				height: 100%;
+				text-align: center;
+				border-left: 1px solid $color-gray-light;
+				box-sizing: border-box;
+				border-radius: 2px;
+				transition: all 0.25s ease;
+				overflow: hidden;
+			}
+
+			.original {
+				display: none;
+			}
 
 			.erase-points {
 				position: absolute;
@@ -112,6 +193,24 @@
 				cursor: pointer;
 				transition: all 0.25s ease;
 			}
+
+			&[data-pivot] {
+				.index {
+					&::before {
+						position: absolute;
+						content: "";
+						display: block;
+						width: 4px;
+						height: 100%;
+						left: -4px;
+						top: -1px;
+						background-color: $color-light;
+						border-top: solid 1px $color-light;
+						border-bottom: solid 1px $color-light;
+						border-radius: 2px 0 0 2px;
+					}
+				}
+			}
 			
 			&:hover {
 				transform: scale(1.1, 1.1);
@@ -125,6 +224,7 @@
 				}
 			}
 		}
+		
 
 		.inline {
 
@@ -133,11 +233,17 @@
 			}
 
 			.force-center {
+				width: 33.33%;
 				&>label {
 					margin: 0 auto;
 				}
 			}
 		}
+	}
+
+	.borderless {
+		margin-top: 0 !important;
+		border: none !important;
 	}
 
 }

@@ -7,7 +7,7 @@ module.exports = {
 	entry: './src/js/app.js',
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'grapathix.bundle.js',
+		filename: 'graphatrix.bundle.js',
 		publicPath: ""
 	},
 	devtool: 'source-map',
@@ -22,6 +22,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
+				exclude: /node_modules/,
 				use: 'babel-loader'
 			},
 			{
@@ -51,7 +52,7 @@ module.exports = {
 			},
 			{
 				context: "./src/images",
-				from: 'iconX.png',
+				from: '*',
 				to: './images'
 			}/*,
 			{
