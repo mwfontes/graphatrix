@@ -4,7 +4,7 @@
   "description": "A tool for plotting and understanding matrixes",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --port 8000 --hot",
+    "start": "webpack-dev-server --port 8000 --hot",
     "build": "webpack -p"
   },
   "repository": {

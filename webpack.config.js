@@ -10,7 +10,7 @@ module.exports = {
 		filename: 'graphatrix.bundle.js',
 		publicPath: ""
 	},
-	devtool: 'source-map',
+	devtool: 'inline-source-map',
 	module: {
 		rules: [
 			{
@@ -54,12 +54,7 @@ module.exports = {
 				context: "./src/images",
 				from: '*',
 				to: './images'
-			}/*,
-			{
-				context: './src/images',
-				from: '*',
-				to: './images'
-			}*/
+			},
 		]),
 		new ExtractTextPlugin({
 			filename: "graphatrix.bundle.css",
