@@ -1,4 +1,4 @@
-import '../css/global.scss';
+import '../css/main.scss';
 
 import Canvas from './canvas';
 import Vertex from './vertex';

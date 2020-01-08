@@ -1,28 +1,37 @@
 const path = require('path');
-const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-	entry: './src/js/app.js',
+  entry: ['babel-polyfill', './src/js/app.js'],
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'graphatrix.bundle.js',
+		filename: 'graphatrix.js',
 		publicPath: ""
 	},
 	devtool: 'inline-source-map',
+	resolve: {
+		alias: {
+			react: path.join(__dirname, 'node_modules')
+		}
+	},
 	module: {
 		rules: [
 			{
-				test: /\.scss$/,
-				use: ExtractTextPlugin.extract({
-					fallback: "style-loader",
-					use: ["css-loader", "sass-loader"]
-				})
-			},
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {loader: MiniCssExtractPlugin.loader},
+          {loader: 'css-loader', options: {sourceMap: true}},
+          {loader: 'postcss-loader', options: {sourceMap: true}},
+          {loader: 'sass-loader', options: {sourceMap: true}}
+        ]
+      },
 			{
 				test: /\.js$/,
-				exclude: /node_modules/,
 				use: 'babel-loader'
 			},
 			{
@@ -56,10 +65,8 @@ module.exports = {
 				to: './images'
 			},
 		]),
-		new ExtractTextPlugin({
-			filename: "graphatrix.bundle.css",
-			disable: false,
-			allChunks: true
+		new MiniCssExtractPlugin({
+			filename: `graphatrix.css`
 		})
 	]
 };
